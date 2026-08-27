@@ -30,6 +30,7 @@ DATA_DIR = "data"
 HISTORY_PATH = os.path.join(DATA_DIR, "history.csv")
 PREDICTIONS_PATH = os.path.join(DATA_DIR, "predictions.csv")
 TRACK_RECORD_PATH = os.path.join(DATA_DIR, "track_record.csv")
+NIFTY_PREDICTIONS_PATH = os.path.join(DATA_DIR, "nifty_predictions.csv")
 REPORT_PATH = os.path.join(DATA_DIR, "report.md")
 
 BASE_URL = "https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_{date}_F_0000.csv.zip"
@@ -65,6 +66,25 @@ TRACK_COLS = [
     "outcome",
     "scored_date",
 ]
+NIFTY_PRED_COLS = [
+    "prediction_id",
+    "signal_date",
+    "signal_time_ist",
+    "action",
+    "instrument",
+    "nifty_at_signal",
+    "prev_high",
+    "prev_low",
+    "regime",
+    "bias",
+    "status",
+    "eod_nifty",
+    "day_return_pct",
+    "outcome",
+    "scored_date",
+    "notes",
+]
+MORNING_SECTION = "## Morning trade confirmation (today)"
 
 
 def get_session() -> requests.Session:
@@ -470,6 +490,330 @@ def build_nifty_daily_plan() -> dict[str, Any]:
     }
 
 
+def build_morning_confirmation() -> dict[str, Any]:
+    """Check live Nifty vs yesterday's levels (~10 AM IST) and return trade signal."""
+    now = datetime.now()
+    signal_date = now.strftime("%Y-%m-%d")
+    signal_time = now.strftime("%H:%M IST")
+
+    daily = yf.download("^NSEI", period="10d", interval="1d", progress=False, auto_adjust=True)
+    if daily.empty or len(daily) < 2:
+        return {"error": "Could not fetch Nifty daily data", "signal_date": signal_date}
+
+    high = daily["High"].squeeze()
+    low = daily["Low"].squeeze()
+    close = daily["Close"].squeeze()
+
+    prev_high = float(high.iloc[-2])
+    prev_low = float(low.iloc[-2])
+    prev_close = float(close.iloc[-2])
+
+    intraday = yf.download("^NSEI", period="1d", interval="5m", progress=False, auto_adjust=True)
+    if intraday.empty:
+        intraday = yf.download("^NSEI", period="1d", interval="15m", progress=False, auto_adjust=True)
+
+    if not intraday.empty:
+        nifty_now = float(intraday["Close"].squeeze().iloc[-1])
+        day_open = float(intraday["Open"].squeeze().iloc[0])
+    else:
+        nifty_now = float(close.iloc[-1])
+        day_open = nifty_now
+
+    gap_pct = round((day_open - prev_close) / prev_close * 100, 2)
+    move_from_open_pct = round((nifty_now - day_open) / day_open * 100, 2)
+
+    plan = build_nifty_daily_plan()
+    regime = plan.get("regime", "NEUTRAL")
+    bias = plan.get("bias", "NEUTRAL")
+
+    if nifty_now < prev_low:
+        action = "TRADE PE"
+        instrument = f"NIFTY {round_nifty_strike(nifty_now)} PE"
+        reason = (
+            f"Nifty **{nifty_now:.0f}** is below yesterday's low **{prev_low:.0f}** — "
+            "breakdown confirmed. PE setup is active."
+        )
+    elif nifty_now > prev_high:
+        action = "TRADE CE"
+        instrument = f"NIFTY {round_nifty_strike(nifty_now)} CE"
+        reason = (
+            f"Nifty **{nifty_now:.0f}** is above yesterday's high **{prev_high:.0f}** — "
+            "breakout confirmed. CE setup is active."
+        )
+    else:
+        action = "SKIP"
+        instrument = "—"
+        reason = (
+            f"Nifty **{nifty_now:.0f}** is between yesterday's low **{prev_low:.0f}** "
+            f"and high **{prev_high:.0f}** — no breakout yet. **Do not trade.** "
+            "Wait or skip today."
+        )
+
+    return {
+        "signal_date": signal_date,
+        "signal_time": signal_time,
+        "action": action,
+        "instrument": instrument,
+        "nifty_now": round(nifty_now, 2),
+        "day_open": round(day_open, 2),
+        "prev_high": round(prev_high, 2),
+        "prev_low": round(prev_low, 2),
+        "gap_pct": gap_pct,
+        "move_from_open_pct": move_from_open_pct,
+        "regime": regime,
+        "bias": bias,
+        "reason": reason,
+        "exit_reminder": (
+            "Book half at +50% premium, rest at +80–100%. Cut at -40%. "
+            "Week-1 options: exit today or tomorrow."
+        ),
+    }
+
+
+def load_nifty_predictions() -> pd.DataFrame:
+    if os.path.exists(NIFTY_PREDICTIONS_PATH):
+        df = pd.read_csv(NIFTY_PREDICTIONS_PATH, dtype=str)
+        for col in NIFTY_PRED_COLS:
+            if col not in df.columns:
+                df[col] = None
+        for col in ("nifty_at_signal", "prev_high", "prev_low", "eod_nifty", "day_return_pct"):
+            if col in df.columns:
+                df[col] = pd.to_numeric(df[col], errors="coerce")
+        return df[NIFTY_PRED_COLS]
+    return pd.DataFrame(columns=NIFTY_PRED_COLS)
+
+
+def log_nifty_prediction(confirmation: dict[str, Any]) -> pd.DataFrame:
+    preds = load_nifty_predictions()
+    action = confirmation.get("action", "SKIP")
+    if action == "SKIP":
+        return preds
+
+    signal_date = confirmation["signal_date"]
+    existing = (
+        set(preds[preds["signal_date"] == signal_date]["action"].tolist()) if not preds.empty else set()
+    )
+    if action in existing:
+        print(f"[skip] {action} already logged for {signal_date}")
+        return preds
+
+    row = {
+        "prediction_id": f"{signal_date}_{action.replace(' ', '_')}",
+        "signal_date": signal_date,
+        "signal_time_ist": confirmation["signal_time"],
+        "action": action,
+        "instrument": confirmation["instrument"],
+        "nifty_at_signal": confirmation["nifty_now"],
+        "prev_high": confirmation["prev_high"],
+        "prev_low": confirmation["prev_low"],
+        "regime": confirmation["regime"],
+        "bias": confirmation["bias"],
+        "status": "open",
+        "eod_nifty": None,
+        "day_return_pct": None,
+        "outcome": "pending",
+        "scored_date": None,
+        "notes": confirmation["reason"].replace("**", ""),
+    }
+    preds = pd.concat([preds, pd.DataFrame([row])], ignore_index=True)
+    preds.to_csv(NIFTY_PREDICTIONS_PATH, index=False)
+    print(f"[ok]   logged Nifty prediction: {action} → {confirmation['instrument']}")
+    return preds
+
+
+def score_nifty_predictions(scored_date: str | None = None) -> pd.DataFrame:
+    preds = load_nifty_predictions()
+    if preds.empty:
+        return preds
+
+    scored_date = scored_date or datetime.now().strftime("%Y-%m-%d")
+    daily = yf.download("^NSEI", period="5d", interval="1d", progress=False, auto_adjust=True)
+    if daily.empty:
+        return preds
+
+    eod_nifty = float(daily["Close"].squeeze().iloc[-1])
+    updated_rows = []
+    scored_count = 0
+
+    for _, row in preds.iterrows():
+        rec = row.to_dict()
+        if rec.get("status") == "open" and rec.get("action") != "SKIP" and str(rec.get("signal_date")) == scored_date:
+            entry = float(rec["nifty_at_signal"])
+            ret_pct = round((eod_nifty - entry) / entry * 100, 2)
+            if rec["action"] == "TRADE PE":
+                outcome = "winner" if ret_pct <= -0.2 else "loser" if ret_pct >= 0.2 else "flat"
+            else:
+                outcome = "winner" if ret_pct >= 0.2 else "loser" if ret_pct <= -0.2 else "flat"
+            rec["eod_nifty"] = round(eod_nifty, 2)
+            rec["day_return_pct"] = ret_pct
+            rec["outcome"] = outcome
+            rec["status"] = "closed"
+            rec["scored_date"] = scored_date
+            scored_count += 1
+        updated_rows.append(rec)
+
+    preds = pd.DataFrame(updated_rows, columns=NIFTY_PRED_COLS)
+    preds.to_csv(NIFTY_PREDICTIONS_PATH, index=False)
+    if scored_count:
+        print(f"[ok]   scored {scored_count} Nifty predictions")
+    return preds
+
+
+def format_morning_section(conf: dict[str, Any]) -> list[str]:
+    if conf.get("error"):
+        return [MORNING_SECTION, "", f"_{conf['error']}_", ""]
+
+    action_emoji = {"TRADE PE": "🔴", "TRADE CE": "🟢", "SKIP": "⚪"}.get(conf["action"], "")
+
+    lines = [
+        MORNING_SECTION,
+        "",
+        f"**Checked at:** {conf['signal_time']}  ",
+        f"**Decision:** {action_emoji} **{conf['action']}**  ",
+    ]
+    if conf["action"] != "SKIP":
+        lines.append(f"**Instrument:** {conf['instrument']}  ")
+    lines.extend(
+        [
+            "",
+            conf["reason"],
+            "",
+            "### Live context",
+            "",
+            f"- Nifty now: **{conf['nifty_now']}**",
+            f"- Day open: {conf['day_open']} (gap {conf['gap_pct']:+.2f}%)",
+            f"- Move from open: {conf['move_from_open_pct']:+.2f}%",
+            f"- PE trigger (below): **{conf['prev_low']}**",
+            f"- CE trigger (above): **{conf['prev_high']}**",
+            f"- Regime: {conf['regime']} | Bias: {conf['bias']}",
+            "",
+        ]
+    )
+    if conf["action"] != "SKIP":
+        lines.extend(["### Exit reminder", "", f"- {conf['exit_reminder']}", ""])
+    else:
+        lines.append("_No trade today unless levels break later — but prefer to skip choppy days._")
+        lines.append("")
+    return lines
+
+
+def format_nifty_tracker_section(preds: pd.DataFrame, days: int = 30) -> list[str]:
+    lines = ["## Nifty trade tracker (review)", ""]
+    if preds.empty:
+        lines.append("_No Nifty trade signals logged yet. TRADE PE/CE entries appear here after morning scans._")
+        lines.append("")
+        return lines
+
+    preds = preds.copy()
+    preds["signal_date"] = pd.to_datetime(preds["signal_date"])
+    cutoff = datetime.now() - timedelta(days=days)
+    recent = preds[preds["signal_date"] >= cutoff].sort_values("signal_date", ascending=False)
+
+    trades = recent[recent["action"].isin(["TRADE PE", "TRADE CE"])]
+    closed = trades[trades["status"] == "closed"]
+    winners = closed[closed["outcome"] == "winner"]
+
+    lines.append(f"**Last {days} days** — use this to review and tune the setup.")
+    lines.append("")
+    lines.append(f"- **Trade signals:** {len(trades)}")
+    lines.append(f"- **Closed:** {len(closed)} | **Wins:** {len(winners)}")
+    if len(closed) > 0:
+        win_rate = round(len(winners) / len(closed) * 100, 1)
+        avg_ret = round(closed["day_return_pct"].mean(), 2)
+        lines.append(f"- **Win rate (direction correct by EOD):** {win_rate}%")
+        lines.append(f"- **Avg Nifty move from signal:** {avg_ret:+.2f}%")
+    lines.append("")
+
+    if not trades.empty:
+        lines.append("### Recent Nifty signals")
+        lines.append("")
+        lines.append("| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |")
+        lines.append("|------|------|--------|------------|---------------:|----:|-------:|---------|")
+        for _, r in trades.head(20).iterrows():
+            eod = r["eod_nifty"] if pd.notna(r["eod_nifty"]) else "—"
+            move = r["day_return_pct"] if pd.notna(r["day_return_pct"]) else "—"
+            sig_date = r["signal_date"]
+            if hasattr(sig_date, "strftime"):
+                sig_date = sig_date.strftime("%Y-%m-%d")
+            lines.append(
+                f"| {sig_date} | {r['signal_time_ist']} | {r['action']} | {r['instrument']} "
+                f"| {r['nifty_at_signal']} | {eod} | {move} | {r['outcome']} |"
+            )
+        lines.append("")
+
+    return lines
+
+
+def remove_report_section(content: str, section_header: str) -> str:
+    if section_header not in content:
+        return content
+    before, after = content.split(section_header, 1)
+    next_header = after.find("\n## ")
+    if next_header != -1:
+        after = after[next_header + 1 :]
+    else:
+        after = ""
+    return (before.rstrip() + "\n\n" + after.lstrip()).strip() + "\n"
+
+
+def upsert_report_section(section_header: str, section_lines: list[str]) -> None:
+    """Replace or insert a markdown section in report.md."""
+    os.makedirs(DATA_DIR, exist_ok=True)
+    if os.path.exists(REPORT_PATH):
+        with open(REPORT_PATH, encoding="utf-8") as f:
+            content = f.read()
+    else:
+        content = "# EOD Momentum Scan Report\n\n"
+
+    content = remove_report_section(content, section_header)
+    new_section = "\n".join(section_lines).rstrip() + "\n"
+
+    if content.strip() == "# EOD Momentum Scan Report":
+        content = "# EOD Momentum Scan Report\n\n" + new_section
+    elif content.startswith("# EOD Momentum Scan Report\n\n"):
+        rest = content[len("# EOD Momentum Scan Report\n\n") :]
+        content = "# EOD Momentum Scan Report\n\n" + new_section + rest
+    else:
+        content = content.rstrip() + "\n\n" + new_section
+
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"[ok]   updated {REPORT_PATH}")
+
+
+def run_morning() -> None:
+    os.makedirs(DATA_DIR, exist_ok=True)
+    confirmation = build_morning_confirmation()
+    log_nifty_prediction(confirmation)
+    preds = load_nifty_predictions()
+
+    if os.path.exists(REPORT_PATH):
+        with open(REPORT_PATH, encoding="utf-8") as f:
+            content = f.read()
+    else:
+        content = "# EOD Momentum Scan Report\n\n"
+
+    content = remove_report_section(content, MORNING_SECTION)
+    content = remove_report_section(content, "## Nifty trade tracker (review)")
+
+    morning_text = "\n".join(format_morning_section(confirmation)).rstrip() + "\n"
+    tracker_text = "\n".join(format_nifty_tracker_section(preds)).rstrip() + "\n"
+
+    if content.startswith("# EOD Momentum Scan Report\n\n"):
+        rest = content[len("# EOD Momentum Scan Report\n\n") :]
+    elif content.startswith("# EOD Momentum Scan Report"):
+        rest = content[len("# EOD Momentum Scan Report") :].lstrip()
+    else:
+        rest = content
+
+    content = "# EOD Momentum Scan Report\n\n" + morning_text + "\n" + tracker_text + "\n" + rest.lstrip()
+
+    with open(REPORT_PATH, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"[ok]   updated {REPORT_PATH}")
+    print(f"[ok]   morning decision: {confirmation.get('action', 'ERROR')}")
+
+
 def format_nifty_plan_section(plan: dict[str, Any]) -> list[str]:
     if plan.get("error"):
         return ["## Nifty daily plan (tomorrow)", "", f"_{plan['error']}_", ""]
@@ -508,6 +852,15 @@ def format_nifty_plan_section(plan: dict[str, Any]) -> list[str]:
     return lines
 
 
+def extract_report_section(content: str, section_header: str) -> str | None:
+    if section_header not in content:
+        return None
+    _, after = content.split(section_header, 1)
+    next_header = after.find("\n## ")
+    body = after[:next_header] if next_header != -1 else after
+    return section_header + body.rstrip() + "\n"
+
+
 def write_report(
     scan_date: str,
     candidates: list[dict[str, Any]],
@@ -529,6 +882,17 @@ def write_report(
         f"**Trading days in history:** {trading_days}  ",
         "",
     ]
+
+    preserved_morning = None
+    if os.path.exists(REPORT_PATH):
+        with open(REPORT_PATH, encoding="utf-8") as f:
+            existing = f.read()
+        if MORNING_SECTION in existing and scan_date in existing:
+            preserved_morning = extract_report_section(existing, MORNING_SECTION)
+
+    if preserved_morning:
+        lines.extend(preserved_morning.splitlines())
+        lines.append("")
 
     if nifty_plan:
         lines.extend(format_nifty_plan_section(nifty_plan))
@@ -569,6 +933,9 @@ def write_report(
                 f"{r['latest_close']} | {r['return_pct']} | {r['outcome']} |"
             )
 
+    nifty_preds = load_nifty_predictions()
+    lines.extend(["", *format_nifty_tracker_section(nifty_preds)])
+
     lines.extend(
         [
             "",
@@ -600,6 +967,7 @@ def run_daily(session: requests.Session, target: datetime | None = None) -> None
 
     log_predictions(candidates, scan_date)
     track = score_predictions(hist_dict, scan_date)
+    score_nifty_predictions(scan_date)
     trading_days = history["date"].nunique()
     nifty_plan = build_nifty_daily_plan()
     write_report(scan_date, candidates, track, len(hist_dict), trading_days, nifty_plan)
@@ -619,7 +987,16 @@ def run_backfill(session: requests.Session, days: int) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="EOD momentum scan with prediction tracking")
     parser.add_argument("--backfill", type=int, help="fetch and process the last N calendar weekdays")
+    parser.add_argument(
+        "--morning",
+        action="store_true",
+        help="run morning Nifty confirmation (~10 AM IST) and update report",
+    )
     args = parser.parse_args()
+
+    if args.morning:
+        run_morning()
+        return
 
     session = get_session()
     if args.backfill:

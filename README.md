@@ -7,6 +7,13 @@ running prediction-vs-reality track record.
 
 The report starts with a **Nifty daily plan** (PE/CE bias, key levels, tomorrow's trigger) followed by stock momentum candidates.
 
+| When | What you get |
+|------|----------------|
+| **~10:00 AM IST** | **Morning confirmation** — TRADE PE / TRADE CE / SKIP (updates `data/report.md`) |
+| **~7:00 PM IST** | **Evening scan** — tomorrow's plan, stock candidates, scores morning trade |
+
+Morning **TRADE** signals are logged to `data/nifty_predictions.csv` for weekly/monthly review.
+
 ---
 
 ## What this does
