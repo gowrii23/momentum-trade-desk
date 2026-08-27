@@ -18,6 +18,7 @@ from typing import Any
 
 import pandas as pd
 import requests
+import yfinance as yf
 
 # --- tunable thresholds (see AUTOMATION-SETUP.md) ---
 MIN_VOLUME = 50_000
@@ -360,12 +361,160 @@ def score_predictions(history: dict[str, list[dict[str, Any]]], scored_date: str
     return track
 
 
+def round_nifty_strike(spot: float) -> int:
+    """Nifty strikes are in multiples of 50."""
+    return int(round(spot / 50) * 50)
+
+
+def build_nifty_daily_plan() -> dict[str, Any]:
+    """Build tomorrow's Nifty PE/CE plan from index OHLC."""
+    data = yf.download("^NSEI", period="1y", interval="1d", progress=False, auto_adjust=True)
+    if data.empty or len(data) < 5:
+        return {"error": "Could not fetch Nifty data"}
+
+    close = data["Close"].squeeze()
+    high = data["High"].squeeze()
+    low = data["Low"].squeeze()
+
+    spot = float(close.iloc[-1])
+    prev_high = float(high.iloc[-2]) if len(high) > 1 else float(high.iloc[-1])
+    prev_low = float(low.iloc[-2]) if len(low) > 1 else float(low.iloc[-1])
+    prev_close = float(close.iloc[-2]) if len(close) > 1 else spot
+    day_change_pct = round((spot - prev_close) / prev_close * 100, 2)
+
+    sma50 = float(close.rolling(50).mean().iloc[-1]) if len(close) >= 50 else None
+    sma200 = float(close.rolling(200).mean().iloc[-1]) if len(close) >= 200 else None
+
+    regime = "BULLISH" if sma200 and spot > sma200 else "BEARISH"
+    if sma200 is None:
+        regime = "NEUTRAL"
+
+    atm = round_nifty_strike(spot)
+    pe_strike = atm
+    ce_strike = atm
+
+    # --- bias from trend + today's close ---
+    if regime == "BEARISH":
+        bias = "PE"
+        bias_reason = "Nifty below 200-day average — favour puts on weakness."
+    elif regime == "BULLISH":
+        bias = "CE"
+        bias_reason = "Nifty above 200-day average — favour calls on strength."
+    else:
+        bias = "NEUTRAL"
+        bias_reason = "Not enough history for 200-day trend — trade only clear breakouts."
+
+    down_day = day_change_pct < 0
+    up_day = day_change_pct > 0
+    broke_low = spot < prev_low
+    broke_high = spot > prev_high
+
+    if bias == "PE" and down_day and broke_low:
+        signal = "PE CONFIRMED"
+        signal_note = "Down day and closed below yesterday's low — PE buyers had the edge today."
+    elif bias == "CE" and up_day and broke_high:
+        signal = "CE CONFIRMED"
+        signal_note = "Up day and closed above yesterday's high — CE buyers had the edge today."
+    elif bias == "PE" and down_day:
+        signal = "PE WATCH"
+        signal_note = "Down day with bearish bias — wait for a clean break below yesterday's low tomorrow."
+    elif bias == "CE" and up_day:
+        signal = "CE WATCH"
+        signal_note = "Up day with bullish bias — wait for a clean break above yesterday's high tomorrow."
+    else:
+        signal = "SKIP"
+        signal_note = "No clean directional setup today — only trade if tomorrow's open confirms."
+
+    pe_trigger = f"Nifty breaks below **{prev_low:.0f}** (yesterday's low) in the first 30–60 min"
+    ce_trigger = f"Nifty breaks above **{prev_high:.0f}** (yesterday's high) in the first 30–60 min"
+
+    if bias == "PE":
+        tomorrow_plan = (
+            f"**Bias: PE** — {pe_trigger}. "
+            f"Strike: **NIFTY {pe_strike} PE** (ATM) or **{pe_strike - 50} PE** (slightly OTM). "
+            "Book half at +50% premium, rest at +80–100%. Cut at -40%."
+        )
+    elif bias == "CE":
+        tomorrow_plan = (
+            f"**Bias: CE** — {ce_trigger}. "
+            f"Strike: **NIFTY {ce_strike} CE** (ATM) or **{ce_strike + 50} CE** (slightly OTM). "
+            "Book half at +50% premium, rest at +80–100%. Cut at -40%."
+        )
+    else:
+        tomorrow_plan = (
+            f"**No default bias** — PE if {pe_trigger.lower()}; "
+            f"CE if {ce_trigger.lower()}. Otherwise skip."
+        )
+
+    return {
+        "spot": round(spot, 2),
+        "prev_high": round(prev_high, 2),
+        "prev_low": round(prev_low, 2),
+        "day_change_pct": day_change_pct,
+        "sma50": round(sma50, 2) if sma50 else None,
+        "sma200": round(sma200, 2) if sma200 else None,
+        "regime": regime,
+        "bias": bias,
+        "bias_reason": bias_reason,
+        "signal": signal,
+        "signal_note": signal_note,
+        "pe_trigger": pe_trigger,
+        "ce_trigger": ce_trigger,
+        "pe_strike": pe_strike,
+        "ce_strike": ce_strike,
+        "tomorrow_plan": tomorrow_plan,
+        "dont_chase": (
+            "Do **not** chase options already up 80–100%. "
+            "Enter only on tomorrow's trigger, or book profits if you are already in."
+        ),
+    }
+
+
+def format_nifty_plan_section(plan: dict[str, Any]) -> list[str]:
+    if plan.get("error"):
+        return ["## Nifty daily plan (tomorrow)", "", f"_{plan['error']}_", ""]
+
+    lines = [
+        "## Nifty daily plan (tomorrow)",
+        "",
+        f"**Spot:** {plan['spot']} ({plan['day_change_pct']:+.2f}% today)  ",
+        f"**Regime:** {plan['regime']}  ",
+        f"**Bias:** {plan['bias']} — {plan['bias_reason']}  ",
+        f"**Today's signal:** {plan['signal']}  ",
+        "",
+        f"_{plan['signal_note']}_",
+        "",
+        "### Key levels",
+        "",
+        f"- Yesterday's high: **{plan['prev_high']}** (CE trigger above this)",
+        f"- Yesterday's low: **{plan['prev_low']}** (PE trigger below this)",
+        f"- 50-day average: {plan['sma50'] or '—'}",
+        f"- 200-day average: {plan['sma200'] or '—'}",
+        "",
+        "### Tomorrow's plan",
+        "",
+        plan["tomorrow_plan"],
+        "",
+        "### Exit rules (weeklies)",
+        "",
+        "- Book **half** at **+50%** on premium",
+        "- Book **rest** at **+80–100%** or trail",
+        "- **Exit** if premium is down **40%**",
+        "- Week-1 options: treat as **today/tomorrow** trade, not hold till expiry",
+        "",
+        f"⚠️ {plan['dont_chase']}",
+        "",
+    ]
+    return lines
+
+
 def write_report(
     scan_date: str,
     candidates: list[dict[str, Any]],
     track: pd.DataFrame,
     symbols_scanned: int,
     trading_days: int,
+    nifty_plan: dict[str, Any] | None = None,
 ) -> None:
     closed = track[track["outcome"].isin(["winner", "loser", "stopped"])] if not track.empty else track
     winners = closed[closed["outcome"] == "winner"] if not closed.empty else closed
@@ -379,9 +528,17 @@ def write_report(
         f"**Symbols scanned:** {symbols_scanned}  ",
         f"**Trading days in history:** {trading_days}  ",
         "",
-        "## Today's candidates",
-        "",
     ]
+
+    if nifty_plan:
+        lines.extend(format_nifty_plan_section(nifty_plan))
+
+    lines.extend(
+        [
+            "## Stock momentum candidates",
+            "",
+        ]
+    )
 
     if candidates:
         lines.append("| Symbol | Price | RS | Vol x Avg | Stop |")
@@ -444,7 +601,8 @@ def run_daily(session: requests.Session, target: datetime | None = None) -> None
     log_predictions(candidates, scan_date)
     track = score_predictions(hist_dict, scan_date)
     trading_days = history["date"].nunique()
-    write_report(scan_date, candidates, track, len(hist_dict), trading_days)
+    nifty_plan = build_nifty_daily_plan()
+    write_report(scan_date, candidates, track, len(hist_dict), trading_days, nifty_plan)
 
 
 def run_backfill(session: requests.Session, days: int) -> None:
