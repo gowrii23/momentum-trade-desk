@@ -4,6 +4,27 @@
 **Symbols scanned:** 2623  
 **Trading days in history:** 1  
 
+## Morning trade confirmation (today)
+
+**Checked at:** 12:32 IST  
+**Decision:** 🔴 **TRADE PE**  
+**Instrument:** NIFTY 24100 PE  
+
+Nifty **24091** is below yesterday's low **24208** — breakdown confirmed. PE setup is active.
+
+### Live context
+
+- Nifty now: **24090.85**
+- Day open: 24277.6 (gap +0.29%)
+- Move from open: -0.77%
+- PE trigger (below): **24207.75**
+- CE trigger (above): **24378.6**
+- Regime: BEARISH | Bias: PE
+
+### Exit reminder
+
+- Book half at +50% premium, rest at +80–100%. Cut at -40%. Week-1 options: exit today or tomorrow.
+
 ## Nifty daily plan (tomorrow)
 
 **Spot:** 24090.85 (-0.48% today)  
@@ -40,6 +61,22 @@ _No names passed Trend Template + Volume Confirmation today._
 ## Track record
 
 _Track record builds as predictions close. Check back after a few weeks._
+
+## Nifty trade tracker (review)
+
+**Last 30 days** — use this to review and tune the setup.
+
+- **Trade signals:** 1
+- **Closed:** 1 | **Wins:** 0
+- **Win rate (direction correct by EOD):** 0.0%
+- **Avg Nifty move from signal:** +0.00%
+
+### Recent Nifty signals
+
+| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
+|------|------|--------|------------|---------------:|----:|-------:|---------|
+| 2026-08-27 | 12:31 IST | TRADE PE | NIFTY 24100 PE | 24090.85 | 24090.85 | -0.0 | flat |
+
 
 ---
 _Technical rules only. Verify fundamentals and news catalysts by hand before trading._
