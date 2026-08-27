@@ -1,0 +1,10 @@
+# Python / data
+__pycache__/
+*.pyc
+.venv/
+venv/
+bhavcopy_data/
+
+# OS
+.DS_Store
+Thumbs.db
