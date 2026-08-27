@@ -1,82 +1,58 @@
-# Momentum Trade Desk
+# EOD Momentum Scan
 
-Daily NSE momentum scanner with **Nifty OTM CE (Call Option)** signals and a browser-based trade scoring desk.
+Automated end-of-day scan of NSE equities against a momentum rule set, with a
+running prediction-vs-reality track record.
 
-Automatically fetches NSE bhavcopy data via GitHub Actions, ranks momentum stocks using the Minervini trend template + O'Neil relative strength, and recommends out-of-the-money Nifty call strikes when index momentum is bullish.
+**👉 [Today's scan and track record](data/report.md)** — updated every weekday evening.
 
-## What it does
+---
 
-1. **`fetch_bhavcopy.py`** — Downloads NSE's free daily bhavcopy (end-of-day prices for all listed stocks)
-2. **`scan_momentum.py`** — Scans bhavcopy history for top momentum stocks and checks Nifty 50 momentum for OTM CE entry ideas
-3. **`index.html`** — Browser trade desk to view daily scan results, import bhavcopy, and score individual candidates with news/fundamentals
+## What this does
 
-## Quick start (local)
+Every weekday at 19:00 IST, a GitHub Actions workflow:
 
-```bash
-pip install -r requirements.txt
-python fetch_bhavcopy.py --backfill 200   # ~3 min, builds SMA/RS history
-python scan_momentum.py                   # writes output/latest_scan.json
-python -m http.server 8080                # open http://localhost:8080
-```
+1. Fetches the latest NSE Bhavcopy (free, no API key)
+2. Appends it to `data/history.csv`
+3. Computes SMA50/150/200, 52-week high/low, ATR14, and an RS percentile
+4. Scans every liquid symbol against Trend Template + Volume Confirmation
+5. Logs qualifying names to `data/predictions.csv` with entry price and stop
+6. Scores all past predictions against the latest close
+7. Writes `data/report.md`
 
-## GitHub deployment
+## Where to look
 
-### 1. Create a public repo
+| File | What's in it |
+|---|---|
+| [`data/report.md`](data/report.md) | Today's candidates + running win rate — **start here** |
+| [`data/track_record.csv`](data/track_record.csv) | Every prediction with its actual return |
+| [`data/predictions.csv`](data/predictions.csv) | Raw prediction log |
+| [`data/history.csv`](data/history.csv) | Stored price history |
 
-On GitHub, create a new **public** repository named `momentum-trade-desk` (empty, no README).
+The same report also appears in the **Actions** tab under each run's summary,
+without needing to open any files.
 
-### 2. Push this code
+## Other files
 
-```bash
-cd momentum-trade-desk
-git init
-git add .
-git commit -m "Initial commit: momentum scanner + Nifty OTM CE signals"
-git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/momentum-trade-desk.git
-git push -u origin main
-```
+- `daily_scan.py` — the pipeline
+- `.github/workflows/daily-scan.yml` — the schedule
+- `AUTOMATION-SETUP.md` — setup instructions
+- `momentum-trading-rules.md` — the rule set this implements, and the books behind it
+- `trading-rules-mindmap.mermaid` — the rules as a visual map
+- `trade-desk.html` — manual per-stock scoring tool (open in a browser)
+- `index.html` — legacy trade desk with Nifty OTM CE signals (GitHub Pages)
 
-### 3. Enable GitHub Pages
+## Legacy local tools
 
-1. Go to **Settings → Pages**
-2. Under **Build and deployment**, set Source to **GitHub Actions**
-3. The `daily-scan.yml` workflow deploys the site automatically
+- `scan_momentum.py` + `fetch_bhavcopy.py` — original scanner writing to `output/latest_scan.json`
+- Run locally: `python fetch_bhavcopy.py --backfill 200 && python scan_momentum.py`
 
-### 4. Run the first scan
+## Important
 
-Go to **Actions → Daily Momentum Scan → Run workflow**.  
-On first run, set `backfill_days` to `200` to build price history, then run again with `0` for daily updates.
+The scan checks **technical rules only**. Fundamentals (EPS growth, ROE) and a fresh
+news catalyst are not automated — no free source provides them at scale — and they're
+the checks that separate "this chart qualifies" from "this is a trade." Verify those by
+hand on the handful of names the scan surfaces.
 
-The workflow runs automatically **Mon–Fri at ~7:00 PM IST** after NSE publishes bhavcopy.
-
-## Nifty OTM CE logic
-
-When Nifty passes the momentum trend template:
-
-- Price > SMA50 > SMA150 > SMA200
-- Within 25% of 52-week high
-- At least 30% above 52-week low
-- 200 SMA trending up
-
-The scanner suggests an **OTM CE strike** ~150 points above ATM (rounded to nearest 50). Example: Nifty at 24,350 → suggests `NIFTY 24550 CE`.
-
-| Signal | Meaning |
-|--------|---------|
-| **BUY** | Full momentum template confirmed — OTM CE candidate |
-| **WATCH** | Bullish regime but template not fully confirmed |
-| **SKIP** | Bearish regime (below 200 SMA) — avoid new long CE |
-
-See `docs/momentum-trading-rules.md` for the full rule set (position sizing, IV checks, expiry preferences).
-
-## Output files
-
-| File | Description |
-|------|-------------|
-| `output/latest_scan.json` | Full scan results (Nifty + top stocks) |
-| `output/latest_scan.csv` | Top momentum stocks as CSV |
-| `bhavcopy_data/` | Cached daily NSE bhavcopy (gitignored locally, cached in Actions) |
-
-## Disclaimer
-
-Scoring tool only — **not order execution**. Backtest and paper-trade before live use. Options involve significant risk; OTM calls are high-variance bets — size accordingly.
+This is a learning and tracking exercise, not trade execution. Momentum systems
+typically win 35-45% of the time and profit on the size of winners, so judge the track
+record over months and dozens of predictions, not over a good or bad week.

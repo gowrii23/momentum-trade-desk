@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentum + News Trade Desk</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+  :root{
+    --bg:#12141a; --panel:#1a1e27; --panel2:#1f2430; --border:#2a3040;
+    --text:#e8e6df; --muted:#8b93a7; --gold:#c9a24b;
+    --buy:#3fae76; --watch:#d9a441; --skip:#c1554a;
+    --mono:'JetBrains Mono', monospace; --display:'Space Grotesk', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--mono);}
+  header{padding:28px 32px 20px;border-bottom:1px solid var(--border);}
+  header h1{font-family:var(--display);font-weight:700;font-size:22px;margin:0 0 4px;letter-spacing:0.2px;}
+  header p{color:var(--muted);margin:0;font-size:13px;}
+  main{max-width:1180px;margin:0 auto;padding:24px 32px 60px;display:grid;gap:24px;}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:6px;padding:20px;}
+  .panel h2{font-family:var(--display);font-size:14px;text-transform:uppercase;letter-spacing:1.2px;color:var(--gold);margin:0 0 14px;}
+  .tabs{display:flex;gap:8px;margin-bottom:16px;}
+  .tabs button{background:var(--panel2);border:1px solid var(--border);color:var(--muted);padding:8px 16px;border-radius:4px;font-family:var(--display);font-size:12px;cursor:pointer;letter-spacing:0.5px;}
+  .tabs button.active{color:var(--bg);background:var(--gold);border-color:var(--gold);}
+  fieldset{border:1px solid var(--border);border-radius:5px;padding:12px 14px 16px;margin:0 0 14px;}
+  legend{font-family:var(--display);font-size:11px;text-transform:uppercase;color:var(--muted);letter-spacing:1px;padding:0 6px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px 14px;}
+  label{display:block;font-size:11px;color:var(--muted);margin-bottom:4px;}
+  input[type=text],input[type=number]{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);padding:7px 8px;border-radius:4px;font-family:var(--mono);font-size:13px;}
+  input:focus,select:focus,button:focus{outline:2px solid var(--gold);outline-offset:1px;}
+  select{width:100%;background:var(--panel2);border:1px solid var(--border);color:var(--text);padding:7px 8px;border-radius:4px;font-family:var(--mono);font-size:13px;}
+  .checkrow{display:flex;align-items:center;gap:8px;margin-top:6px;}
+  .checkrow input{width:auto;}
+  .actions{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;}
+  button.primary{background:var(--gold);color:var(--bg);border:none;padding:10px 20px;border-radius:4px;font-family:var(--display);font-weight:600;font-size:13px;cursor:pointer;letter-spacing:0.4px;}
+  button.ghost{background:transparent;color:var(--muted);border:1px solid var(--border);padding:10px 16px;border-radius:4px;font-family:var(--display);font-size:12px;cursor:pointer;}
+  #csvPanel{display:none;}
+  #csvPanel.active{display:block;}
+  #manualForm.hidden{display:none;}
+  .csv-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap;}
+  .csv-row input[type=file]{color:var(--muted);font-size:12px;}
+  a.tpl{color:var(--gold);font-size:12px;text-decoration:none;border-bottom:1px dotted var(--gold);}
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  th{text-align:left;color:var(--muted);font-family:var(--display);font-size:10.5px;text-transform:uppercase;letter-spacing:0.6px;padding:8px 10px;border-bottom:1px solid var(--border);}
+  td{padding:9px 10px;border-bottom:1px solid #232838;vertical-align:middle;}
+  tr:hover td{background:#1e2330;}
+  .verdict{font-family:var(--display);font-weight:700;font-size:11px;padding:4px 9px;border-radius:3px;letter-spacing:0.5px;display:inline-block;}
+  .verdict.BUY{background:rgba(63,174,118,0.15);color:var(--buy);}
+  .verdict.WATCH{background:rgba(217,164,65,0.15);color:var(--watch);}
+  .verdict.SKIP{background:rgba(193,85,74,0.15);color:var(--skip);}
+  .dots{display:flex;gap:3px;}
+  .dot{width:9px;height:9px;border-radius:2px;background:#2a3040;}
+  .dot.pass{background:var(--buy);}
+  .dot.fail{background:var(--skip);}
+  .score{font-weight:700;}
+  .notes{color:var(--muted);font-size:11px;max-width:220px;}
+  .rm{background:none;border:none;color:var(--muted);cursor:pointer;font-size:14px;}
+  .rm:hover{color:var(--skip);}
+  .empty{color:var(--muted);font-size:13px;padding:20px 4px;text-align:center;}
+  footer{color:var(--muted);font-size:11px;text-align:center;padding:20px;}
+  .hint{background:var(--panel2);border:1px solid var(--border);border-radius:5px;padding:12px 14px;font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+  .hint code{color:var(--gold);background:#00000030;padding:1px 5px;border-radius:3px;}
+  .hint a{color:var(--gold);}
+  .drop{border:1px dashed var(--border);border-radius:5px;padding:22px;text-align:center;color:var(--muted);font-size:12.5px;}
+  .drop input{margin-top:10px;}
+  .searchbar{display:flex;gap:10px;margin:14px 0 10px;}
+  .searchbar input{flex:1;}
+  .load-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:4px 10px;border-radius:3px;font-size:11px;cursor:pointer;font-family:var(--display);}
+  .load-btn:hover{background:var(--gold);color:var(--bg);}
+  .badge{font-size:10px;color:var(--muted);}
+  .status{font-size:12px;color:var(--buy);margin-top:8px;}
+  .status.err{color:var(--skip);}
+  .scan-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  @media(max-width:800px){.scan-grid{grid-template-columns:1fr;}}
+  .scan-card{background:var(--panel2);border:1px solid var(--border);border-radius:5px;padding:14px;}
+  .scan-card h3{font-family:var(--display);font-size:13px;margin:0 0 8px;color:var(--text);}
+  .scan-meta{font-size:12px;color:var(--muted);line-height:1.7;}
+  .scan-meta strong{color:var(--text);}
+  .strike{font-family:var(--display);font-size:18px;color:var(--gold);margin:6px 0;}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Momentum Trade Desk</h1>
+  <p>Daily NSE momentum scan + Nifty OTM CE signals. Scores stocks and index momentum against the Minervini trend template.</p>
+</header>
+
+<main>
+  <section class="panel">
+    <h2>Daily Scan — Nifty OTM CE &amp; Top Momentum Stocks</h2>
+    <div class="hint">Auto-updated by GitHub Actions after market close. Loads <code>output/latest_scan.json</code> from this repo.</div>
+    <div id="dailyScan"><p class="empty">Loading daily scan...</p></div>
+    <div class="actions"><button class="ghost" id="refreshScan">Refresh Scan</button></div>
+  </section>
+
+  <section class="panel">
+    <h2>Data Import — NSE Bhavcopy</h2>
+    <div class="hint">
+      NSE publishes the full daily market file free, no key required, at:<br>
+      <code>https://nsearchives.nseindia.com/content/cm/BhavCopy_NSE_CM_0_0_0_YYYYMMDD_F_0000.csv.zip</code><br>
+      NSE blocks scripted/cross-origin requests from browser pages (bot protection), so this app can't pull it automatically — <a href="https://nsearchives.nseindia.com/content/cm/" target="_blank" rel="noopener">open the folder</a>, download the day's zip, and drop it below. Each file covers the <em>whole</em> market for that day, so uploading a few days builds real technicals (SMA/ATR/RS) across every symbol, not just one stock. Fundamentals (EPS/ROE) and news still need to come from you — bhavcopy has neither.
+    </div>
+    <div class="drop">
+      Drop today's (or any date's) Bhavcopy <strong>.zip</strong> or <strong>.csv</strong> here
+      <div><input type="file" id="bhavFile" accept=".csv,.zip"></div>
+      <div id="importStatus"></div>
+    </div>
+    <div id="importSummary"></div>
+  </section>
+
+  <section class="panel">
+    <h2>Add Candidate</h2>
+    <div class="tabs">
+      <button id="tabManual" class="active">Manual Entry</button>
+      <button id="tabCsv">CSV Batch</button>
+    </div>
+
+    <form id="manualForm">
+      <fieldset>
+        <legend>Identity &amp; Fundamentals</legend>
+        <div class="grid">
+          <div><label>Symbol</label><input type="text" id="symbol" placeholder="NIFTY 24200 CE"></div>
+          <div><label>EPS Growth YoY %</label><input type="number" id="epsGrowth" placeholder="≥20"></div>
+          <div><label>ROE %</label><input type="number" id="roe" placeholder="≥15"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Technicals</legend>
+        <div class="grid">
+          <div><label>Current Price</label><input type="number" id="price"></div>
+          <div><label>50-day SMA</label><input type="number" id="sma50"></div>
+          <div><label>150-day SMA</label><input type="number" id="sma150"></div>
+          <div><label>200-day SMA</label><input type="number" id="sma200"></div>
+          <div><label>52-week High</label><input type="number" id="high52"></div>
+          <div><label>52-week Low</label><input type="number" id="low52"></div>
+          <div><label>RS Percentile (1-99)</label><input type="number" id="rs" placeholder="≥70"></div>
+          <div><label>Trigger-day Volume</label><input type="number" id="vol"></div>
+          <div><label>50-day Avg Volume</label><input type="number" id="avgVol"></div>
+          <div><label>ATR (14-day)</label><input type="number" id="atr"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>News / Catalyst</legend>
+        <div class="grid">
+          <div><label>News Age (hours)</label><input type="number" id="newsAge" placeholder="≤48"></div>
+          <div><label>Impact</label>
+            <select id="impact">
+              <option value="High">High</option>
+              <option value="Medium">Medium</option>
+              <option value="Low">Low</option>
+            </select>
+          </div>
+        </div>
+        <div class="checkrow"><input type="checkbox" id="reaction"><label style="margin:0" for="reaction">Price/volume reaction confirms it wasn't already priced in</label></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Risk &amp; Position Sizing</legend>
+        <div class="grid">
+          <div><label>Capital (₹)</label><input type="number" id="capital" placeholder="e.g. 500000"></div>
+          <div><label>Risk % per trade</label><input type="number" id="riskPct" value="1.5"></div>
+          <div><label>Entry Price</label><input type="number" id="entry" placeholder="defaults to Current Price"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Options (optional)</legend>
+        <div class="checkrow"><input type="checkbox" id="useOptions"><label style="margin:0" for="useOptions">This trade is via options</label></div>
+        <div class="grid" style="margin-top:10px;">
+          <div><label>IV Percentile (0-100)</label><input type="number" id="ivPct" placeholder="flag if >70"></div>
+          <div><label>Days to Expiry</label><input type="number" id="expiry" placeholder="≥30 preferred"></div>
+          <div><label>Delta</label><input type="number" id="delta" step="0.05" placeholder="0.6-0.7 substitute, 0.2-0.3 lottery"></div>
+        </div>
+      </fieldset>
+
+      <div class="actions">
+        <button type="submit" class="primary">Score &amp; Add</button>
+        <button type="button" class="ghost" id="resetForm">Clear Form</button>
+      </div>
+    </form>
+
+    <div id="csvPanel">
+      <div class="csv-row">
+        <input type="file" id="csvFile" accept=".csv">
+        <a class="tpl" id="downloadTemplate" href="#">Download CSV template</a>
+      </div>
+      <p style="color:var(--muted);font-size:11.5px;margin-top:10px;">Columns: symbol,epsGrowth,roe,price,sma50,sma150,sma200,high52,low52,rs,vol,avgVol,atr,newsAge,impact,reaction,capital,riskPct,entry,useOptions,ivPct,expiry,delta</p>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>Candidates</h2>
+    <div id="tableWrap">
+      <p class="empty">No candidates scored yet.</p>
+    </div>
+    <div class="actions">
+      <button class="ghost" id="exportCsv">Export Results (CSV)</button>
+      <button class="ghost" id="clearAll">Clear All</button>
+    </div>
+  </section>
+</main>
+
+<footer>Scoring tool only — not order execution. Backtest before trusting a rule set live.</footer>
+
+<script>
+let candidates = [];
+let priceHistory = {}; // { SYMBOL: [{date,open,high,low,close,volume}, ...] }
+let rsCache = {};
+
+const STORAGE_KEY = 'momentum-trade-desk-candidates';
+const HISTORY_KEY = 'momentum-trade-desk-price-history';
+
+function loadPriceHistory(){
+  try{
+    const raw = localStorage.getItem(HISTORY_KEY);
+    if(raw) priceHistory = JSON.parse(raw);
+  }catch(e){ /* nothing saved yet */ }
+  renderImportSummary();
+}
+
+function savePriceHistory(){
+  try{ localStorage.setItem(HISTORY_KEY, JSON.stringify(priceHistory)); }
+  catch(e){ console.error('history save failed', e); }
+}
+
+function avg(arr){ return arr.reduce((a,b)=>a+b,0)/arr.length; }
+
+async function handleBhavFile(file){
+  const statusEl = document.getElementById('importStatus');
+  statusEl.className = 'status';
+  statusEl.textContent = 'Reading file...';
+  try{
+    let text;
+    if(file.name.toLowerCase().endsWith('.zip')){
+      const buf = await file.arrayBuffer();
+      const zip = await JSZip.loadAsync(buf);
+      const csvName = Object.keys(zip.files).find(n => n.toLowerCase().endsWith('.csv'));
+      if(!csvName) throw new Error('No CSV found inside the zip');
+      text = await zip.files[csvName].async('string');
+    } else {
+      text = await file.text();
+    }
+    Papa.parse(text, {
+      header: true, skipEmptyLines: true,
+      complete: (res) => {
+        const added = ingestBhavRows(res.data);
+        statusEl.textContent = `Imported ${added} equity rows from ${file.name}.`;
+        savePriceHistory();
+        renderImportSummary();
+      }
+    });
+  }catch(err){
+    statusEl.className = 'status err';
+    statusEl.textContent = 'Could not read that file: ' + err.message + '. Make sure it is an unmodified NSE Bhavcopy zip/csv.';
+  }
+}
+
+function ingestBhavRows(rows){
+  let count = 0;
+  rows.forEach(r => {
+    const sym = (r.TckrSymb || '').trim();
+    const close = parseFloat(r.ClsPric);
+    if(!sym || isNaN(close)) return;
+    if(r.SctySrs && r.SctySrs.trim() !== 'EQ') return; // equity series only
+    if(r.OptnTp) return; // skip any derivative rows if present
+    const date = (r.TradDt || r.BizDt || '').trim();
+    if(!date) return;
+    const entry = {
+      date,
+      open: parseFloat(r.OpnPric) || close,
+      high: parseFloat(r.HghPric) || close,
+      low: parseFloat(r.LwPric) || close,
+      close,
+      volume: parseFloat(r.TtlTradgVol) || 0
+    };
+    if(!priceHistory[sym]) priceHistory[sym] = [];
+    const idx = priceHistory[sym].findIndex(e => e.date === date);
+    if(idx >= 0) priceHistory[sym][idx] = entry; else priceHistory[sym].push(entry);
+    count++;
+  });
+  Object.keys(priceHistory).forEach(sym => {
+    priceHistory[sym].sort((a,b) => new Date(a.date) - new Date(b.date));
+    if(priceHistory[sym].length > 260) priceHistory[sym] = priceHistory[sym].slice(-260);
+  });
+  rsCache = computeRSForAll();
+  return count;
+}
+
+function computeATR(histSlice){
+  if(histSlice.length < 2) return null;
+  const trs = [];
+  for(let i=1;i<histSlice.length;i++){
+    const cur = histSlice[i], prev = histSlice[i-1];
+    trs.push(Math.max(cur.high-cur.low, Math.abs(cur.high-prev.close), Math.abs(cur.low-prev.close)));
+  }
+  return avg(trs.slice(-14));
+}
+
+function computeRSForAll(){
+  const raws = {};
+  Object.keys(priceHistory).forEach(sym => {
+    const hist = priceHistory[sym];
+    if(hist.length < 63) return;
+    const closeNow = hist[hist.length-1].close;
+    const back = (n) => hist.length > n ? hist[hist.length-1-n].close : null;
+    const c63 = back(63), c126 = back(126), c189 = back(189), c252 = back(252);
+    if(!c63) return;
+    let raw = (closeNow/c63)*0.4;
+    raw += (closeNow/(c126||c63))*0.2;
+    raw += (closeNow/(c189||c63))*0.2;
+    raw += (closeNow/(c252||c63))*0.2;
+    raws[sym] = raw;
+  });
+  const vals = Object.values(raws).sort((a,b)=>a-b);
+  const pct = {};
+  Object.keys(raws).forEach(sym => {
+    const rank = vals.filter(v => v <= raws[sym]).length;
+    pct[sym] = Math.max(1, Math.round((rank/vals.length)*99));
+  });
+  return pct;
+}
+
+function computeTechnicals(sym){
+  const hist = priceHistory[sym];
+  if(!hist || hist.length < 1) return null;
+  const closes = hist.map(h => h.close);
+  const sma = (n) => hist.length >= n ? avg(closes.slice(-n)) : null;
+  const w52 = hist.slice(-252);
+  return {
+    price: hist[hist.length-1].close,
+    sma50: sma(50), sma150: sma(150), sma200: sma(200),
+    high52: Math.max(...w52.map(h=>h.high)),
+    low52: Math.min(...w52.map(h=>h.low)),
+    vol: hist[hist.length-1].volume,
+    avgVol: hist.length >= 50 ? avg(hist.slice(-50).map(h=>h.volume)) : avg(hist.map(h=>h.volume)),
+    atr: computeATR(hist.slice(-15)),
+    rs: rsCache[sym] || null,
+    dataPoints: hist.length,
+    lastDate: hist[hist.length-1].date
+  };
+}
+
+function renderImportSummary(){
+  const wrap = document.getElementById('importSummary');
+  const syms = Object.keys(priceHistory);
+  if(syms.length === 0){ wrap.innerHTML = ''; return; }
+
+  wrap.innerHTML = `
+    <div class="searchbar"><input type="text" id="symSearch" placeholder="Search symbol (e.g. IDEA) — showing top movers by RS if empty"></div>
+    <table id="importTable"></table>
+    <p class="badge">${syms.length} symbols in local history · ${Math.max(...syms.map(s=>priceHistory[s].length))} max days loaded</p>
+  `;
+  renderImportTable('');
+  document.getElementById('symSearch').addEventListener('input', (e) => renderImportTable(e.target.value.trim().toUpperCase()));
+}
+
+function renderImportTable(filter){
+  const syms = Object.keys(priceHistory);
+  let list;
+  if(filter){
+    list = syms.filter(s => s.includes(filter));
+  } else {
+    list = [...syms].sort((a,b) => (rsCache[b]||0) - (rsCache[a]||0)).slice(0, 25);
+  }
+  const rows = list.map(sym => {
+    const t = computeTechnicals(sym);
+    if(!t) return '';
+    return `<tr>
+      <td>${sym}</td>
+      <td>${t.dataPoints}d</td>
+      <td>${t.lastDate}</td>
+      <td>${t.price.toFixed(2)}</td>
+      <td>${t.rs ?? '—'}</td>
+      <td>${t.atr ? t.atr.toFixed(2) : '—'}</td>
+      <td><button class="load-btn" data-sym="${sym}">Load into form</button></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('importTable').innerHTML = `
+    <thead><tr><th>Symbol</th><th>History</th><th>As of</th><th>Close</th><th>RS</th><th>ATR14</th><th></th></tr></thead>
+    <tbody>${rows || '<tr><td colspan="7" class="empty">No match.</td></tr>'}</tbody>
+  `;
+  document.querySelectorAll('.load-btn').forEach(btn => {
+    btn.addEventListener('click', () => loadSymbolIntoForm(btn.getAttribute('data-sym')));
+  });
+}
+
+function loadSymbolIntoForm(sym){
+  const t = computeTechnicals(sym);
+  if(!t) return;
+  document.getElementById('tabManual').click();
+  document.getElementById('symbol').value = sym;
+  document.getElementById('price').value = t.price.toFixed(2);
+  if(t.sma50) document.getElementById('sma50').value = t.sma50.toFixed(2);
+  if(t.sma150) document.getElementById('sma150').value = t.sma150.toFixed(2);
+  if(t.sma200) document.getElementById('sma200').value = t.sma200.toFixed(2);
+  document.getElementById('high52').value = t.high52.toFixed(2);
+  document.getElementById('low52').value = t.low52.toFixed(2);
+  if(t.rs) document.getElementById('rs').value = t.rs;
+  document.getElementById('vol').value = Math.round(t.vol);
+  document.getElementById('avgVol').value = Math.round(t.avgVol);
+  if(t.atr) document.getElementById('atr').value = t.atr.toFixed(2);
+  document.getElementById('entry').value = t.price.toFixed(2);
+  document.getElementById('epsGrowth').focus();
+}
+
+function loadCandidates(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) candidates = JSON.parse(raw);
+  }catch(e){ /* no saved data yet */ }
+  render();
+}
+
+function saveCandidates(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(candidates)); }
+  catch(e){ console.error('storage save failed', e); }
+}
+
+function num(v){ const n = parseFloat(v); return isNaN(n) ? 0 : n; }
+
+function scoreCandidate(d){
+  const checks = {};
+  checks.fundamental = d.epsGrowth >= 20 && d.roe >= 15;
+  checks.trend = d.price > d.sma50 && d.sma50 > d.sma150 && d.sma150 > d.sma200
+              && d.price >= 0.75 * d.high52 && d.price >= 1.3 * d.low52
+              && d.rs >= 70;
+  checks.volume = d.avgVol > 0 && d.vol >= 1.5 * d.avgVol;
+  checks.news = d.newsAge <= 48 && (d.impact === 'High' || d.impact === 'Medium');
+  checks.reaction = !!d.reaction;
+
+  const entry = d.entry > 0 ? d.entry : d.price;
+  const stop = d.atr > 0 ? entry - 1.5 * d.atr : 0;
+  const riskPerShare = entry - stop;
+  const riskAmount = d.capital * (d.riskPct / 100);
+  let posSize = riskPerShare > 0 ? Math.floor(riskAmount / riskPerShare) : 0;
+  let posValue = posSize * entry;
+  const capCeiling = d.capital * 0.10;
+  let capped = false;
+  if(posValue > capCeiling && entry > 0){
+    posSize = Math.floor(capCeiling / entry);
+    posValue = posSize * entry;
+    capped = true;
+  }
+  checks.risk = posSize > 0 && riskPerShare > 0;
+
+  let optionsNote = '';
+  if(d.useOptions){
+    const ivOk = d.ivPct <= 70;
+    const expiryOk = d.expiry >= 30;
+    checks.options = ivOk && expiryOk;
+    if(!ivOk) optionsNote += 'IV elevated — crush risk. ';
+    if(!expiryOk) optionsNote += 'Short expiry — lottery-ticket bucket, size near zero. ';
+    if(d.delta >= 0.6) optionsNote += 'Delta suggests stock-substitute use. ';
+    else if(d.delta > 0 && d.delta <= 0.3) optionsNote += 'Low delta — explicit high-variance bet. ';
+  } else {
+    checks.options = true;
+  }
+
+  const total = Object.keys(checks).length;
+  const passed = Object.values(checks).filter(Boolean).length;
+  const score = Math.round((passed/total)*100);
+  let verdict = 'SKIP';
+  if(score === 100) verdict = 'BUY';
+  else if(score >= 60) verdict = 'WATCH';
+
+  const notes = [];
+  if(!checks.fundamental) notes.push('fundamentals weak');
+  if(!checks.trend) notes.push('trend template fail');
+  if(!checks.volume) notes.push('volume unconfirmed');
+  if(!checks.news) notes.push('news stale/low-impact');
+  if(!checks.reaction) notes.push('reaction unconfirmed');
+  if(!checks.risk) notes.push('risk undefined');
+  if(capped) notes.push('position capped at 10% capital');
+  if(optionsNote) notes.push(optionsNote.trim());
+
+  return { checks, score, verdict, stop: stop.toFixed(2), posSize, posValue: posValue.toFixed(0), notes: notes.join('; ') || '—' };
+}
+
+function collectFormData(){
+  return {
+    symbol: document.getElementById('symbol').value || 'UNNAMED',
+    epsGrowth: num(document.getElementById('epsGrowth').value),
+    roe: num(document.getElementById('roe').value),
+    price: num(document.getElementById('price').value),
+    sma50: num(document.getElementById('sma50').value),
+    sma150: num(document.getElementById('sma150').value),
+    sma200: num(document.getElementById('sma200').value),
+    high52: num(document.getElementById('high52').value),
+    low52: num(document.getElementById('low52').value),
+    rs: num(document.getElementById('rs').value),
+    vol: num(document.getElementById('vol').value),
+    avgVol: num(document.getElementById('avgVol').value),
+    atr: num(document.getElementById('atr').value),
+    newsAge: num(document.getElementById('newsAge').value),
+    impact: document.getElementById('impact').value,
+    reaction: document.getElementById('reaction').checked,
+    capital: num(document.getElementById('capital').value),
+    riskPct: num(document.getElementById('riskPct').value) || 1.5,
+    entry: num(document.getElementById('entry').value),
+    useOptions: document.getElementById('useOptions').checked,
+    ivPct: num(document.getElementById('ivPct').value),
+    expiry: num(document.getElementById('expiry').value),
+    delta: num(document.getElementById('delta').value)
+  };
+}
+
+function render(){
+  const wrap = document.getElementById('tableWrap');
+  if(candidates.length === 0){
+    wrap.innerHTML = '<p class="empty">No candidates scored yet.</p>';
+    return;
+  }
+  const sorted = [...candidates].sort((a,b)=>b.result.score - a.result.score);
+  let rows = sorted.map((c, idx) => {
+    const r = c.result;
+    const dotOrder = ['fundamental','trend','volume','news','reaction','risk','options'];
+    const dots = dotOrder.map(k => `<span class="dot ${r.checks[k] ? 'pass':'fail'}" title="${k}"></span>`).join('');
+    return `<tr>
+      <td>${c.data.symbol}</td>
+      <td class="score">${r.score}</td>
+      <td><span class="verdict ${r.verdict}">${r.verdict}</span></td>
+      <td><div class="dots">${dots}</div></td>
+      <td>${r.stop}</td>
+      <td>${r.posSize} / ₹${r.posValue}</td>
+      <td class="notes">${r.notes}</td>
+      <td><button class="rm" data-id="${c.id}" title="Remove">✕</button></td>
+    </tr>`;
+  }).join('');
+
+  wrap.innerHTML = `<table>
+    <thead><tr>
+      <th>Symbol</th><th>Score</th><th>Verdict</th><th>Checks</th><th>Stop</th><th>Size / Value</th><th>Notes</th><th></th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+
+  wrap.querySelectorAll('.rm').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-id');
+      candidates = candidates.filter(c => c.id !== id);
+      saveCandidates();
+      render();
+    });
+  });
+}
+
+document.getElementById('manualForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const data = collectFormData();
+  const result = scoreCandidate(data);
+  candidates.push({ id: Date.now()+'-'+Math.random().toString(36).slice(2,7), data, result });
+  saveCandidates();
+  render();
+  e.target.reset();
+  document.getElementById('riskPct').value = 1.5;
+});
+
+document.getElementById('resetForm').addEventListener('click', () => {
+  document.getElementById('manualForm').reset();
+  document.getElementById('riskPct').value = 1.5;
+});
+
+document.getElementById('tabManual').addEventListener('click', () => {
+  document.getElementById('tabManual').classList.add('active');
+  document.getElementById('tabCsv').classList.remove('active');
+  document.getElementById('manualForm').classList.remove('hidden');
+  document.getElementById('csvPanel').classList.remove('active');
+});
+document.getElementById('tabCsv').addEventListener('click', () => {
+  document.getElementById('tabCsv').classList.add('active');
+  document.getElementById('tabManual').classList.remove('active');
+  document.getElementById('manualForm').classList.add('hidden');
+  document.getElementById('csvPanel').classList.add('active');
+});
+
+document.getElementById('downloadTemplate').addEventListener('click', (e) => {
+  e.preventDefault();
+  const header = 'symbol,epsGrowth,roe,price,sma50,sma150,sma200,high52,low52,rs,vol,avgVol,atr,newsAge,impact,reaction,capital,riskPct,entry,useOptions,ivPct,expiry,delta';
+  const sample = 'IDEA,22,16,14.2,12.8,11.5,10.9,15.1,6.8,82,45000000,18000000,0.9,20,High,TRUE,500000,1.5,14.2,FALSE,,,';
+  const blob = new Blob([header+'\n'+sample], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'trade-desk-template.csv';
+  a.click();
+});
+
+document.getElementById('csvFile').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if(!file) return;
+  Papa.parse(file, {
+    header: true,
+    skipEmptyLines: true,
+    complete: (results) => {
+      results.data.forEach(row => {
+        const data = {
+          symbol: row.symbol || 'UNNAMED',
+          epsGrowth: num(row.epsGrowth), roe: num(row.roe),
+          price: num(row.price), sma50: num(row.sma50), sma150: num(row.sma150), sma200: num(row.sma200),
+          high52: num(row.high52), low52: num(row.low52), rs: num(row.rs),
+          vol: num(row.vol), avgVol: num(row.avgVol), atr: num(row.atr),
+          newsAge: num(row.newsAge), impact: row.impact || 'Low',
+          reaction: String(row.reaction).toUpperCase() === 'TRUE',
+          capital: num(row.capital), riskPct: num(row.riskPct) || 1.5, entry: num(row.entry),
+          useOptions: String(row.useOptions).toUpperCase() === 'TRUE',
+          ivPct: num(row.ivPct), expiry: num(row.expiry), delta: num(row.delta)
+        };
+        const result = scoreCandidate(data);
+        candidates.push({ id: Date.now()+'-'+Math.random().toString(36).slice(2,7), data, result });
+      });
+      saveCandidates();
+      render();
+      e.target.value = '';
+    }
+  });
+});
+
+document.getElementById('exportCsv').addEventListener('click', () => {
+  if(candidates.length === 0) return;
+  const header = 'symbol,score,verdict,stop,positionSize,positionValue,notes';
+  const rows = candidates.map(c => {
+    const r = c.result;
+    return [c.data.symbol, r.score, r.verdict, r.stop, r.posSize, r.posValue, '"'+r.notes.replace(/"/g,"'")+'"'].join(',');
+  });
+  const blob = new Blob([header+'\n'+rows.join('\n')], {type:'text/csv'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'trade-desk-results.csv';
+  a.click();
+});
+
+document.getElementById('clearAll').addEventListener('click', () => {
+  candidates = [];
+  saveCandidates();
+  render();
+});
+
+async function loadDailyScan(){
+  const el = document.getElementById('dailyScan');
+  try{
+    const res = await fetch('output/latest_scan.json?_=' + Date.now());
+    if(!res.ok) throw new Error('Scan not available yet — run GitHub Actions or scan locally.');
+    const data = await res.json();
+    const nifty = data.nifty || {};
+    const rec = nifty.otmCeRecommendation || {};
+    const stocks = (data.buyCandidates || data.topMomentumStocks || []).slice(0, 10);
+    const signalClass = rec.signal || data.summary?.otmCeSignal || 'SKIP';
+
+    el.innerHTML = `
+      <div class="scan-grid">
+        <div class="scan-card">
+          <h3>Nifty Momentum → OTM CE</h3>
+          <div class="scan-meta">
+            <div>Scan: <strong>${data.scanDate || '—'}</strong></div>
+            <div>Regime: <strong>${nifty.regime || data.summary?.marketRegime || '—'}</strong></div>
+            <div>Spot: <strong>${nifty.spot ?? '—'}</strong></div>
+            <div class="strike">${rec.instrument || 'No CE signal'}</div>
+            <span class="verdict ${signalClass}">${signalClass}</span>
+            <p style="margin-top:10px">${rec.rationale || '—'}</p>
+            ${rec.alternates ? `<p>Alternates: ${rec.alternates.conservative}, ${rec.alternates.aggressive}</p>` : ''}
+          </div>
+        </div>
+        <div class="scan-card">
+          <h3>Top Momentum Stocks</h3>
+          <table>
+            <thead><tr><th>Symbol</th><th>RS</th><th>Score</th><th>Verdict</th><th></th></tr></thead>
+            <tbody>${stocks.map(s => `
+              <tr>
+                <td>${s.symbol}</td><td>${s.rs ?? '—'}</td><td>${s.score}</td>
+                <td><span class="verdict ${s.verdict}">${s.verdict}</span></td>
+                <td><button class="load-btn scan-load" data-sym="${s.symbol}">Load</button></td>
+              </tr>`).join('') || '<tr><td colspan="5" class="empty">No stocks yet.</td></tr>'}
+            </tbody>
+          </table>
+        </div>
+      </div>`;
+
+    document.querySelectorAll('.scan-load').forEach(btn => {
+      btn.addEventListener('click', () => loadSymbolIntoForm(btn.getAttribute('data-sym')));
+    });
+  }catch(err){
+    el.innerHTML = `<p class="empty status err">${err.message}</p>`;
+  }
+}
+
+document.getElementById('refreshScan').addEventListener('click', loadDailyScan);
+
+document.getElementById('bhavFile').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if(file) handleBhavFile(file);
+  e.target.value = '';
+});
+
+loadCandidates();
+loadPriceHistory();
+loadDailyScan();
+</script>
+</body>
+</html>
