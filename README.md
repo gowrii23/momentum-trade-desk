@@ -5,6 +5,8 @@ running prediction-vs-reality track record.
 
 **👉 [Today's scan and track record](data/report.md)** — updated every weekday evening.
 
+The report starts with a **Nifty daily plan** (PE/CE bias, key levels, tomorrow's trigger) followed by stock momentum candidates.
+
 ---
 
 ## What this does
