@@ -1,5 +1,38 @@
 # EOD Momentum Scan Report
 
+## Morning trade confirmation (today)
+
+**Checked at:** 11:05 IST  
+**Decision:** ⚪ **SKIP**  
+
+Nifty **24080** is between yesterday's low **24077** and high **24188** — no breakout yet. **Do not trade.** Wait or skip today.
+
+### Live context
+
+- Nifty now: **24080.4**
+- Day open: 24117.1 (gap -0.24%)
+- Move from open: -0.15%
+- PE trigger (below): **24076.85**
+- CE trigger (above): **24188.3**
+- Regime: BEARISH | Bias: PE
+
+_No trade today unless levels break later — but prefer to skip choppy days._
+
+## Nifty trade tracker (review)
+
+**Last 30 days** — use this to review and tune the setup.
+
+- **Trade signals:** 1
+- **Closed:** 1 | **Wins:** 0
+- **Win rate (direction correct by EOD):** 0.0%
+- **Avg Nifty move from signal:** +0.00%
+
+### Recent Nifty signals
+
+| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
+|------|------|--------|------------|---------------:|----:|-------:|---------|
+| 2026-08-27 | 12:31 IST | TRADE PE | NIFTY 24100 PE | 24090.85 | 24090.85 | -0.0 | flat |
+
 **Scan date:** 2026-08-28  
 **Symbols scanned:** 2636  
 **Trading days in history:** 2  
@@ -40,22 +73,3 @@ _No names passed Trend Template + Volume Confirmation today._
 ## Track record
 
 _Track record builds as predictions close. Check back after a few weeks._
-
-## Nifty trade tracker (review)
-
-**Last 30 days** — use this to review and tune the setup.
-
-- **Trade signals:** 1
-- **Closed:** 1 | **Wins:** 0
-- **Win rate (direction correct by EOD):** 0.0%
-- **Avg Nifty move from signal:** +0.00%
-
-### Recent Nifty signals
-
-| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
-|------|------|--------|------------|---------------:|----:|-------:|---------|
-| 2026-08-27 | 12:31 IST | TRADE PE | NIFTY 24100 PE | 24090.85 | 24090.85 | -0.0 | flat |
-
-
----
-_Technical rules only. Verify fundamentals and news catalysts by hand before trading._
