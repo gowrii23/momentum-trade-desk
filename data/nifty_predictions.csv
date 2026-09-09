@@ -4,3 +4,4 @@ prediction_id,signal_date,signal_time_ist,action,instrument,nifty_at_signal,prev
 2026-09-02_TRADE_PE,2026-09-02,08:58 IST,TRADE PE,NIFTY 23900 PE,23879.7,24143.15,23952.55,BEARISH,PE,closed,23914.45,0.15,flat,2026-09-02,Nifty 23880 is below yesterday's low 23953 — breakdown confirmed. PE setup is active.
 2026-09-07_TRADE_PE,2026-09-07,09:37 IST,TRADE PE,NIFTY 23750 PE,23749.6,24005.75,23895.85,BEARISH,PE,closed,23779.15,0.12,flat,2026-09-07,Nifty 23750 is below yesterday's low 23896 — breakdown confirmed. PE setup is active.
 2026-09-08_TRADE_PE,2026-09-08,09:00 IST,TRADE PE,NIFTY 23650 PE,23652.65,23890.0,23737.9,BEARISH,PE,closed,23635.1,-0.07,flat,2026-09-08,Nifty 23653 is below yesterday's low 23738 — breakdown confirmed. PE setup is active.
+2026-09-09_TRADE_PE,2026-09-09,09:07 IST,TRADE PE,NIFTY 23500 PE,23505.25,23758.95,23623.1,BEARISH,PE,open,,,pending,,Nifty 23505 is below yesterday's low 23623 — breakdown confirmed. PE setup is active.
