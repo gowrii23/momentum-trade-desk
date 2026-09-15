@@ -2,27 +2,30 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 10:05 IST  
-**Decision:** ⚪ **SKIP**  
+**Checked at:** 09:33 IST  
+**Decision:** 🔴 **TRADE PE**  
+**Instrument:** NIFTY 23150 PE  
 
-Nifty **23398** is between yesterday's low **23380** and high **23495** — no breakout yet. **Do not trade.** Wait or skip today.
+Nifty **23175** is below yesterday's low **23231** — breakdown confirmed. PE setup is active.
 
 ### Live context
 
-- Nifty now: **23398.1**
-- Day open: 23398.1 (gap -0.34%)
-- Move from open: +0.00%
-- PE trigger (below): **23380.1**
-- CE trigger (above): **23494.95**
+- Nifty now: **23174.55**
+- Day open: 23576.15 (gap +0.76%)
+- Move from open: -1.70%
+- PE trigger (below): **23231.4**
+- CE trigger (above): **23448.1**
 - Regime: BEARISH | Bias: PE
 
-_No trade today unless levels break later — but prefer to skip choppy days._
+### Exit reminder
+
+- Book half at +50% premium, rest at +80–100%. Cut at -40%. Week-1 options: exit today or tomorrow.
 
 ## Nifty trade tracker (review)
 
 **Last 30 days** — use this to review and tune the setup.
 
-- **Trade signals:** 7
+- **Trade signals:** 8
 - **Closed:** 7 | **Wins:** 1
 - **Win rate (direction correct by EOD):** 14.3%
 - **Avg Nifty move from signal:** +0.07%
@@ -31,6 +34,7 @@ _No trade today unless levels break later — but prefer to skip choppy days._
 
 | Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
 |------|------|--------|------------|---------------:|----:|-------:|---------|
+| 2026-09-15 | 09:33 IST | TRADE PE | NIFTY 23150 PE | 23174.55 | — | — | pending |
 | 2026-09-10 | 09:05 IST | TRADE PE | NIFTY 23400 PE | 23413.55 | 23477.8 | 0.27 | loser |
 | 2026-09-09 | 09:07 IST | TRADE PE | NIFTY 23500 PE | 23505.25 | 23431.5 | -0.31 | winner |
 | 2026-09-08 | 09:00 IST | TRADE PE | NIFTY 23650 PE | 23652.65 | 23635.1 | -0.07 | flat |
@@ -38,10 +42,6 @@ _No trade today unless levels break later — but prefer to skip choppy days._
 | 2026-09-02 | 08:58 IST | TRADE PE | NIFTY 23900 PE | 23879.7 | 23914.45 | 0.15 | flat |
 | 2026-09-01 | 09:33 IST | TRADE PE | NIFTY 23950 PE | 23970.3 | 24055.8 | 0.36 | loser |
 | 2026-08-27 | 12:31 IST | TRADE PE | NIFTY 24100 PE | 24090.85 | 24090.85 | -0.0 | flat |
-
-**Scan date:** 2026-09-11  
-**Symbols scanned:** 2683  
-**Trading days in history:** 12  
 
 ## Nifty daily plan (tomorrow)
 
