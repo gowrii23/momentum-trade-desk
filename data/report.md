@@ -2,7 +2,7 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 11:08 IST  
+**Checked at:** 10:41 IST  
 **Decision:** 🔴 **TRADE PE**  
 **Instrument:** NIFTY 22400 PE  
 
@@ -11,8 +11,8 @@ Nifty **22422** is below yesterday's low **22595** — breakdown confirmed. PE s
 ### Live context
 
 - Nifty now: **22421.95**
-- Day open: 22543.7 (gap -0.34%)
-- Move from open: -0.54%
+- Day open: 22421.95 (gap -0.88%)
+- Move from open: +0.00%
 - PE trigger (below): **22595.2**
 - CE trigger (above): **22809.35**
 - Regime: BEARISH | Bias: PE
@@ -26,14 +26,15 @@ Nifty **22422** is below yesterday's low **22595** — breakdown confirmed. PE s
 **Last 30 days** — use this to review and tune the setup.
 
 - **Trade signals:** 13
-- **Closed:** 12 | **Wins:** 2
-- **Win rate (direction correct by EOD):** 16.7%
-- **Avg Nifty move from signal:** +0.09%
+- **Closed:** 11 | **Wins:** 2
+- **Win rate (direction correct by EOD):** 18.2%
+- **Avg Nifty move from signal:** +0.08%
 
 ### Recent Nifty signals
 
 | Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
 |------|------|--------|------------|---------------:|----:|-------:|---------|
+| 2026-10-02 | 10:41 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
 | 2026-10-01 | 11:08 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
 | 2026-09-29 | 10:51 IST | TRADE PE | NIFTY 22700 PE | 22716.2 | 22780.25 | 0.28 | loser |
 | 2026-09-28 | 11:10 IST | TRADE PE | NIFTY 22800 PE | 22780.25 | 23140.5 | 1.58 | loser |
@@ -46,11 +47,6 @@ Nifty **22422** is below yesterday's low **22595** — breakdown confirmed. PE s
 | 2026-09-09 | 09:07 IST | TRADE PE | NIFTY 23500 PE | 23505.25 | 23431.5 | -0.31 | winner |
 | 2026-09-08 | 09:00 IST | TRADE PE | NIFTY 23650 PE | 23652.65 | 23635.1 | -0.07 | flat |
 | 2026-09-07 | 09:37 IST | TRADE PE | NIFTY 23750 PE | 23749.6 | 23779.15 | 0.12 | flat |
-| 2026-09-02 | 08:58 IST | TRADE PE | NIFTY 23900 PE | 23879.7 | 23914.45 | 0.15 | flat |
-
-**Scan date:** 2026-09-30  
-**Symbols scanned:** 2750  
-**Trading days in history:** 24  
 
 ## Nifty daily plan (tomorrow)
 
