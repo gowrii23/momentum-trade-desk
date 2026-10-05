@@ -2,24 +2,21 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 10:41 IST  
-**Decision:** 🔴 **TRADE PE**  
-**Instrument:** NIFTY 22400 PE  
+**Checked at:** 11:46 IST  
+**Decision:** ⚪ **SKIP**  
 
-Nifty **22422** is below yesterday's low **22595** — breakdown confirmed. PE setup is active.
+Nifty **22556** is between yesterday's low **22217** and high **22611** — no breakout yet. **Do not trade.** Wait or skip today.
 
 ### Live context
 
-- Nifty now: **22421.95**
-- Day open: 22421.95 (gap -0.88%)
-- Move from open: +0.00%
-- PE trigger (below): **22595.2**
-- CE trigger (above): **22809.35**
+- Nifty now: **22555.75**
+- Day open: 22532.4 (gap +0.49%)
+- Move from open: +0.10%
+- PE trigger (below): **22217.3**
+- CE trigger (above): **22610.6**
 - Regime: BEARISH | Bias: PE
 
-### Exit reminder
-
-- Book half at +50% premium, rest at +80–100%. Cut at -40%. Week-1 options: exit today or tomorrow.
+_No trade today unless levels break later — but prefer to skip choppy days._
 
 ## Nifty trade tracker (review)
 
