@@ -2,18 +2,18 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 11:28 IST  
+**Checked at:** 12:23 IST  
 **Decision:** ⚪ **SKIP**  
 
-Nifty **22520** is between yesterday's low **22180** and high **22599** — no breakout yet. **Do not trade.** Wait or skip today.
+Nifty **22363** is between yesterday's low **22295** and high **22581** — no breakout yet. **Do not trade.** Wait or skip today.
 
 ### Live context
 
-- Nifty now: **22520.45**
-- Day open: 22316.8 (gap +0.38%)
-- Move from open: +0.91%
-- PE trigger (below): **22179.9**
-- CE trigger (above): **22599.05**
+- Nifty now: **22363.35**
+- Day open: 22593.2 (gap +0.32%)
+- Move from open: -1.02%
+- PE trigger (below): **22294.75**
+- CE trigger (above): **22580.75**
 - Regime: BEARISH | Bias: PE
 
 _No trade today unless levels break later — but prefer to skip choppy days._
@@ -22,10 +22,10 @@ _No trade today unless levels break later — but prefer to skip choppy days._
 
 **Last 30 days** — use this to review and tune the setup.
 
-- **Trade signals:** 12
-- **Closed:** 10 | **Wins:** 1
-- **Win rate (direction correct by EOD):** 10.0%
-- **Avg Nifty move from signal:** +0.19%
+- **Trade signals:** 11
+- **Closed:** 9 | **Wins:** 1
+- **Win rate (direction correct by EOD):** 11.1%
+- **Avg Nifty move from signal:** +0.18%
 
 ### Recent Nifty signals
 
@@ -42,11 +42,6 @@ _No trade today unless levels break later — but prefer to skip choppy days._
 | 2026-09-18 | 09:08 IST | TRADE CE | NIFTY 23350 CE | 23367.0 | 23346.4 | -0.09 | flat |
 | 2026-09-17 | 09:37 IST | TRADE CE | NIFTY 23300 CE | 23288.7 | 23270.6 | -0.08 | flat |
 | 2026-09-15 | 09:33 IST | TRADE PE | NIFTY 23150 PE | 23174.55 | 23118.6 | -0.24 | winner |
-| 2026-09-10 | 09:05 IST | TRADE PE | NIFTY 23400 PE | 23413.55 | 23477.8 | 0.27 | loser |
-
-**Scan date:** 2026-10-08  
-**Symbols scanned:** 2779  
-**Trading days in history:** 28
 
 ## Nifty daily plan (tomorrow)
 
