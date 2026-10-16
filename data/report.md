@@ -1,29 +1,56 @@
 # EOD Momentum Scan Report
 
-**Scan date:** 2026-10-15  
-**Symbols scanned:** 2803  
-**Trading days in history:** 32  
-
 ## Morning trade confirmation (today)
 
-**Checked at:** 09:20 IST  
+**Checked at:** 09:13 IST  
 **Decision:** 🟢 **TRADE CE**  
-**Instrument:** NIFTY 22950 CE  
+**Instrument:** NIFTY 23100 CE  
 
-Nifty **22965** is above yesterday's high **22758** — breakout confirmed. CE setup is active.
+Nifty **23087** is above yesterday's high **23056** — breakout confirmed. CE setup is active.
 
 ### Live context
 
-- Nifty now: **22964.95**
-- Day open: 22671.3 (gap +0.21%)
-- Move from open: +1.30%
-- PE trigger (below): **22558.95**
-- CE trigger (above): **22757.95**
+- Nifty now: **23087.1**
+- Day open: 23054.7 (gap +0.25%)
+- Move from open: +0.14%
+- PE trigger (below): **22637.4**
+- CE trigger (above): **23056.4**
 - Regime: BEARISH | Bias: PE
 
 ### Exit reminder
 
 - Book half at +50% premium, rest at +80–100%. Cut at -40%. Week-1 options: exit today or tomorrow.
+
+## Nifty trade tracker (review)
+
+**Last 30 days** — use this to review and tune the setup.
+
+- **Trade signals:** 13
+- **Closed:** 10 | **Wins:** 0
+- **Win rate (direction correct by EOD):** 0.0%
+- **Avg Nifty move from signal:** +0.04%
+
+### Recent Nifty signals
+
+| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
+|------|------|--------|------------|---------------:|----:|-------:|---------|
+| 2026-10-16 | 09:13 IST | TRADE CE | NIFTY 23100 CE | 23087.1 | — | — | pending |
+| 2026-10-15 | 09:20 IST | TRADE CE | NIFTY 22950 CE | 22964.95 | 22997.35 | 0.14 | flat |
+| 2026-10-13 | 12:05 IST | TRADE CE | NIFTY 22700 CE | 22721.95 | 22363.35 | -1.58 | loser |
+| 2026-10-08 | 11:33 IST | TRADE PE | NIFTY 22250 PE | 22231.8 | 22603.05 | 1.67 | loser |
+| 2026-10-06 | 11:27 IST | TRADE CE | NIFTY 22800 CE | 22776.1 | 22555.75 | -0.97 | loser |
+| 2026-10-02 | 10:41 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
+| 2026-10-01 | 11:08 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
+| 2026-09-29 | 10:51 IST | TRADE PE | NIFTY 22700 PE | 22716.2 | 22780.25 | 0.28 | loser |
+| 2026-09-28 | 11:10 IST | TRADE PE | NIFTY 22800 PE | 22780.25 | 23140.5 | 1.58 | loser |
+| 2026-09-24 | 09:27 IST | TRADE PE | NIFTY 23100 PE | 23108.05 | 23063.1 | -0.19 | flat |
+| 2026-09-21 | 10:09 IST | TRADE CE | NIFTY 23450 CE | 23429.0 | 23346.4 | -0.35 | loser |
+| 2026-09-18 | 09:08 IST | TRADE CE | NIFTY 23350 CE | 23367.0 | 23346.4 | -0.09 | flat |
+| 2026-09-17 | 09:37 IST | TRADE CE | NIFTY 23300 CE | 23288.7 | 23270.6 | -0.08 | flat |
+
+**Scan date:** 2026-10-15  
+**Symbols scanned:** 2803  
+**Trading days in history:** 32
 
 ## Nifty daily plan (tomorrow)
 
@@ -61,33 +88,3 @@ _No names passed Trend Template + Volume Confirmation today._
 ## Track record
 
 _Track record builds as predictions close. Check back after a few weeks._
-
-## Nifty trade tracker (review)
-
-**Last 30 days** — use this to review and tune the setup.
-
-- **Trade signals:** 12
-- **Closed:** 10 | **Wins:** 0
-- **Win rate (direction correct by EOD):** 0.0%
-- **Avg Nifty move from signal:** +0.04%
-
-### Recent Nifty signals
-
-| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
-|------|------|--------|------------|---------------:|----:|-------:|---------|
-| 2026-10-15 | 09:20 IST | TRADE CE | NIFTY 22950 CE | 22964.95 | 22997.35 | 0.14 | flat |
-| 2026-10-13 | 12:05 IST | TRADE CE | NIFTY 22700 CE | 22721.95 | 22363.35 | -1.58 | loser |
-| 2026-10-08 | 11:33 IST | TRADE PE | NIFTY 22250 PE | 22231.8 | 22603.05 | 1.67 | loser |
-| 2026-10-06 | 11:27 IST | TRADE CE | NIFTY 22800 CE | 22776.1 | 22555.75 | -0.97 | loser |
-| 2026-10-02 | 10:41 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
-| 2026-10-01 | 11:08 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
-| 2026-09-29 | 10:51 IST | TRADE PE | NIFTY 22700 PE | 22716.2 | 22780.25 | 0.28 | loser |
-| 2026-09-28 | 11:10 IST | TRADE PE | NIFTY 22800 PE | 22780.25 | 23140.5 | 1.58 | loser |
-| 2026-09-24 | 09:27 IST | TRADE PE | NIFTY 23100 PE | 23108.05 | 23063.1 | -0.19 | flat |
-| 2026-09-21 | 10:09 IST | TRADE CE | NIFTY 23450 CE | 23429.0 | 23346.4 | -0.35 | loser |
-| 2026-09-18 | 09:08 IST | TRADE CE | NIFTY 23350 CE | 23367.0 | 23346.4 | -0.09 | flat |
-| 2026-09-17 | 09:37 IST | TRADE CE | NIFTY 23300 CE | 23288.7 | 23270.6 | -0.08 | flat |
-
-
----
-_Technical rules only. Verify fundamentals and news catalysts by hand before trading._
