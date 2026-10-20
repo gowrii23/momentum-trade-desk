@@ -1,12 +1,8 @@
 # EOD Momentum Scan Report
 
-**Scan date:** 2026-10-19  
-**Symbols scanned:** 2812  
-**Trading days in history:** 34  
-
 ## Morning trade confirmation (today)
 
-**Checked at:** 10:11 IST  
+**Checked at:** 09:35 IST  
 **Decision:** 🔴 **TRADE PE**  
 **Instrument:** NIFTY 22900 PE  
 
@@ -24,6 +20,37 @@ Nifty **22889** is below yesterday's low **22914** — breakdown confirmed. PE s
 ### Exit reminder
 
 - Book half at +50% premium, rest at +80–100%. Cut at -40%. Week-1 options: exit today or tomorrow.
+
+## Nifty trade tracker (review)
+
+**Last 30 days** — use this to review and tune the setup.
+
+- **Trade signals:** 13
+- **Closed:** 10 | **Wins:** 1
+- **Win rate (direction correct by EOD):** 10.0%
+- **Avg Nifty move from signal:** +0.20%
+
+### Recent Nifty signals
+
+| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
+|------|------|--------|------------|---------------:|----:|-------:|---------|
+| 2026-10-20 | 09:35 IST | TRADE PE | NIFTY 22900 PE | 22888.95 | — | — | pending |
+| 2026-10-19 | 10:11 IST | TRADE PE | NIFTY 22900 PE | 22888.95 | 23146.15 | 1.12 | loser |
+| 2026-10-16 | 09:13 IST | TRADE CE | NIFTY 23100 CE | 23087.1 | 23146.15 | 0.26 | winner |
+| 2026-10-15 | 09:20 IST | TRADE CE | NIFTY 22950 CE | 22964.95 | 22997.35 | 0.14 | flat |
+| 2026-10-13 | 12:05 IST | TRADE CE | NIFTY 22700 CE | 22721.95 | 22363.35 | -1.58 | loser |
+| 2026-10-08 | 11:33 IST | TRADE PE | NIFTY 22250 PE | 22231.8 | 22603.05 | 1.67 | loser |
+| 2026-10-06 | 11:27 IST | TRADE CE | NIFTY 22800 CE | 22776.1 | 22555.75 | -0.97 | loser |
+| 2026-10-02 | 10:41 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
+| 2026-10-01 | 11:08 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
+| 2026-09-29 | 10:51 IST | TRADE PE | NIFTY 22700 PE | 22716.2 | 22780.25 | 0.28 | loser |
+| 2026-09-28 | 11:10 IST | TRADE PE | NIFTY 22800 PE | 22780.25 | 23140.5 | 1.58 | loser |
+| 2026-09-24 | 09:27 IST | TRADE PE | NIFTY 23100 PE | 23108.05 | 23063.1 | -0.19 | flat |
+| 2026-09-21 | 10:09 IST | TRADE CE | NIFTY 23450 CE | 23429.0 | 23346.4 | -0.35 | loser |
+
+**Scan date:** 2026-10-19  
+**Symbols scanned:** 2812  
+**Trading days in history:** 34
 
 ## Nifty daily plan (tomorrow)
 
@@ -61,33 +88,3 @@ _No names passed Trend Template + Volume Confirmation today._
 ## Track record
 
 _Track record builds as predictions close. Check back after a few weeks._
-
-## Nifty trade tracker (review)
-
-**Last 30 days** — use this to review and tune the setup.
-
-- **Trade signals:** 12
-- **Closed:** 10 | **Wins:** 1
-- **Win rate (direction correct by EOD):** 10.0%
-- **Avg Nifty move from signal:** +0.20%
-
-### Recent Nifty signals
-
-| Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
-|------|------|--------|------------|---------------:|----:|-------:|---------|
-| 2026-10-19 | 10:11 IST | TRADE PE | NIFTY 22900 PE | 22888.95 | 23146.15 | 1.12 | loser |
-| 2026-10-16 | 09:13 IST | TRADE CE | NIFTY 23100 CE | 23087.1 | 23146.15 | 0.26 | winner |
-| 2026-10-15 | 09:20 IST | TRADE CE | NIFTY 22950 CE | 22964.95 | 22997.35 | 0.14 | flat |
-| 2026-10-13 | 12:05 IST | TRADE CE | NIFTY 22700 CE | 22721.95 | 22363.35 | -1.58 | loser |
-| 2026-10-08 | 11:33 IST | TRADE PE | NIFTY 22250 PE | 22231.8 | 22603.05 | 1.67 | loser |
-| 2026-10-06 | 11:27 IST | TRADE CE | NIFTY 22800 CE | 22776.1 | 22555.75 | -0.97 | loser |
-| 2026-10-02 | 10:41 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
-| 2026-10-01 | 11:08 IST | TRADE PE | NIFTY 22400 PE | 22421.95 | — | — | pending |
-| 2026-09-29 | 10:51 IST | TRADE PE | NIFTY 22700 PE | 22716.2 | 22780.25 | 0.28 | loser |
-| 2026-09-28 | 11:10 IST | TRADE PE | NIFTY 22800 PE | 22780.25 | 23140.5 | 1.58 | loser |
-| 2026-09-24 | 09:27 IST | TRADE PE | NIFTY 23100 PE | 23108.05 | 23063.1 | -0.19 | flat |
-| 2026-09-21 | 10:09 IST | TRADE CE | NIFTY 23450 CE | 23429.0 | 23346.4 | -0.35 | loser |
-
-
----
-_Technical rules only. Verify fundamentals and news catalysts by hand before trading._
