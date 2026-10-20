@@ -1,0 +1,9 @@
+data,variant,horizon_months,trades_observed,months_observed,trades_per_month,bust_level,status
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,risk10_next_close (BASELINE),36,1,0.1,7.61,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,risk10_next_close (BASELINE),60,1,0.1,7.61,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,risk2_next_close,36,0,0.1,0.0,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,risk2_next_close,60,0,0.1,0.0,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,"risk10_same_close (look-ahead, optimistic)",36,1,0.1,7.61,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,"risk10_same_close (look-ahead, optimistic)",60,1,0.1,7.61,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,"risk2_same_close (look-ahead, optimistic)",36,0,0.1,0.0,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,"risk2_same_close (look-ahead, optimistic)",60,0,0.1,0.0,1539.28,INSUFFICIENT_TRADES (<30); projection not meaningful

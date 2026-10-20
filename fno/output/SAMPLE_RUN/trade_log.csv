@@ -1,0 +1,2 @@
+data,trade_id,signal_date,side,entry_date,expiry,strike,lot_size,qty,spot_at_entry,pct_otm,equity_before,budget,entry_close,entry_fill,entry_premium,entry_costs,exit_date,exit_reason,exit_close,exit_fill,exit_value,exit_costs,slippage_cost,gross_pnl,total_costs,net_pnl,ret_on_premium_pct,ret_on_equity_pct,cash_after,days_held
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,1,2025-03-04,CE,2025-03-05,2025-03-27,22200.0,75,75,22230.0,-0.13,25000.0,2500.0,30.0,30.3,2272.5,24.6236,2025-03-06,TARGET,50.0,49.5,3712.5,30.7296,60.0,1440.0,55.3532,1384.6468,60.277,5.5386,26384.65,1
