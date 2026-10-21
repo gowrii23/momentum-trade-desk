@@ -1,0 +1,152 @@
+no,kind,in_3y_test,symbol,instrument,expiry,option_type,strike,from_date,to_date,lot_size,note
+1,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Oct-2021,CE,(blank),23-Sep-2021,28-Oct-2021,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+2,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Oct-2021,PE,(blank),23-Sep-2021,28-Oct-2021,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+3,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-Nov-2021,CE,(blank),21-Oct-2021,25-Nov-2021,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+4,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-Nov-2021,PE,(blank),21-Oct-2021,25-Nov-2021,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+5,OPTIONS,no,NIFTY,Index Options (OPTIDX),30-Dec-2021,CE,(blank),18-Nov-2021,30-Dec-2021,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+6,OPTIONS,no,NIFTY,Index Options (OPTIDX),30-Dec-2021,PE,(blank),18-Nov-2021,30-Dec-2021,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+7,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Jan-2022,CE,(blank),23-Dec-2021,27-Jan-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+8,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Jan-2022,PE,(blank),23-Dec-2021,27-Jan-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+9,OPTIONS,no,NIFTY,Index Options (OPTIDX),24-Feb-2022,CE,(blank),20-Jan-2022,24-Feb-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+10,OPTIONS,no,NIFTY,Index Options (OPTIDX),24-Feb-2022,PE,(blank),20-Jan-2022,24-Feb-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+11,OPTIONS,no,NIFTY,Index Options (OPTIDX),31-Mar-2022,CE,(blank),17-Feb-2022,31-Mar-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+12,OPTIONS,no,NIFTY,Index Options (OPTIDX),31-Mar-2022,PE,(blank),17-Feb-2022,31-Mar-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+13,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Apr-2022,CE,(blank),24-Mar-2022,28-Apr-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+14,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Apr-2022,PE,(blank),24-Mar-2022,28-Apr-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+15,OPTIONS,no,NIFTY,Index Options (OPTIDX),26-May-2022,CE,(blank),21-Apr-2022,26-May-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+16,OPTIONS,no,NIFTY,Index Options (OPTIDX),26-May-2022,PE,(blank),21-Apr-2022,26-May-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+17,OPTIONS,no,NIFTY,Index Options (OPTIDX),30-Jun-2022,CE,(blank),19-May-2022,30-Jun-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+18,OPTIONS,no,NIFTY,Index Options (OPTIDX),30-Jun-2022,PE,(blank),19-May-2022,30-Jun-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+19,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Jul-2022,CE,(blank),23-Jun-2022,28-Jul-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+20,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Jul-2022,PE,(blank),23-Jun-2022,28-Jul-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+21,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-Aug-2022,CE,(blank),21-Jul-2022,25-Aug-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+22,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-Aug-2022,PE,(blank),21-Jul-2022,25-Aug-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+23,OPTIONS,no,NIFTY,Index Options (OPTIDX),29-Sep-2022,CE,(blank),18-Aug-2022,29-Sep-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+24,OPTIONS,no,NIFTY,Index Options (OPTIDX),29-Sep-2022,PE,(blank),18-Aug-2022,29-Sep-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+25,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Oct-2022,CE,(blank),22-Sep-2022,27-Oct-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+26,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Oct-2022,PE,(blank),22-Sep-2022,27-Oct-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+27,OPTIONS,no,NIFTY,Index Options (OPTIDX),24-Nov-2022,CE,(blank),20-Oct-2022,24-Nov-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+28,OPTIONS,no,NIFTY,Index Options (OPTIDX),24-Nov-2022,PE,(blank),20-Oct-2022,24-Nov-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+29,OPTIONS,no,NIFTY,Index Options (OPTIDX),29-Dec-2022,CE,(blank),17-Nov-2022,29-Dec-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+30,OPTIONS,no,NIFTY,Index Options (OPTIDX),29-Dec-2022,PE,(blank),17-Nov-2022,29-Dec-2022,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+31,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-Jan-2023,CE,(blank),22-Dec-2022,25-Jan-2023,50,shifted for holiday
+32,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-Jan-2023,PE,(blank),22-Dec-2022,25-Jan-2023,50,shifted for holiday
+33,OPTIONS,no,NIFTY,Index Options (OPTIDX),23-Feb-2023,CE,(blank),18-Jan-2023,23-Feb-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+34,OPTIONS,no,NIFTY,Index Options (OPTIDX),23-Feb-2023,PE,(blank),18-Jan-2023,23-Feb-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+35,OPTIONS,no,NIFTY,Index Options (OPTIDX),30-Mar-2023,CE,(blank),16-Feb-2023,30-Mar-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+36,OPTIONS,no,NIFTY,Index Options (OPTIDX),30-Mar-2023,PE,(blank),16-Feb-2023,30-Mar-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+37,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Apr-2023,CE,(blank),23-Mar-2023,27-Apr-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+38,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Apr-2023,PE,(blank),23-Mar-2023,27-Apr-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+39,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-May-2023,CE,(blank),20-Apr-2023,25-May-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+40,OPTIONS,no,NIFTY,Index Options (OPTIDX),25-May-2023,PE,(blank),20-Apr-2023,25-May-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+41,OPTIONS,no,NIFTY,Index Options (OPTIDX),29-Jun-2023,CE,(blank),18-May-2023,29-Jun-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+42,OPTIONS,no,NIFTY,Index Options (OPTIDX),29-Jun-2023,PE,(blank),18-May-2023,29-Jun-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+43,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Jul-2023,CE,(blank),22-Jun-2023,27-Jul-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+44,OPTIONS,no,NIFTY,Index Options (OPTIDX),27-Jul-2023,PE,(blank),22-Jun-2023,27-Jul-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+45,OPTIONS,no,NIFTY,Index Options (OPTIDX),31-Aug-2023,CE,(blank),20-Jul-2023,31-Aug-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+46,OPTIONS,no,NIFTY,Index Options (OPTIDX),31-Aug-2023,PE,(blank),20-Jul-2023,31-Aug-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+47,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Sep-2023,CE,(blank),24-Aug-2023,28-Sep-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+48,OPTIONS,no,NIFTY,Index Options (OPTIDX),28-Sep-2023,PE,(blank),24-Aug-2023,28-Sep-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+49,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Oct-2023,CE,(blank),21-Sep-2023,26-Oct-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+50,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Oct-2023,PE,(blank),21-Sep-2023,26-Oct-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+51,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Nov-2023,CE,(blank),19-Oct-2023,30-Nov-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+52,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Nov-2023,PE,(blank),19-Oct-2023,30-Nov-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+53,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Dec-2023,CE,(blank),23-Nov-2023,28-Dec-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+54,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Dec-2023,PE,(blank),23-Nov-2023,28-Dec-2023,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+55,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Jan-2024,CE,(blank),21-Dec-2023,25-Jan-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+56,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Jan-2024,PE,(blank),21-Dec-2023,25-Jan-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+57,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-Feb-2024,CE,(blank),18-Jan-2024,29-Feb-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+58,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-Feb-2024,PE,(blank),18-Jan-2024,29-Feb-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+59,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Mar-2024,CE,(blank),22-Feb-2024,28-Mar-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+60,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Mar-2024,PE,(blank),22-Feb-2024,28-Mar-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+61,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Apr-2024,CE,(blank),21-Mar-2024,25-Apr-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+62,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Apr-2024,PE,(blank),21-Mar-2024,25-Apr-2024,50,confirm in NSE dropdown (festival holidays before 2026 not checked)
+63,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-May-2024,CE,(blank),18-Apr-2024,30-May-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+64,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-May-2024,PE,(blank),18-Apr-2024,30-May-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+65,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Jun-2024,CE,(blank),23-May-2024,27-Jun-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+66,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Jun-2024,PE,(blank),23-May-2024,27-Jun-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+67,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Jul-2024,CE,(blank),20-Jun-2024,25-Jul-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+68,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Jul-2024,PE,(blank),20-Jun-2024,25-Jul-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+69,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-Aug-2024,CE,(blank),18-Jul-2024,29-Aug-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+70,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-Aug-2024,PE,(blank),18-Jul-2024,29-Aug-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+71,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Sep-2024,CE,(blank),22-Aug-2024,26-Sep-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+72,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Sep-2024,PE,(blank),22-Aug-2024,26-Sep-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+73,OPTIONS,yes,NIFTY,Index Options (OPTIDX),31-Oct-2024,CE,(blank),19-Sep-2024,31-Oct-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+74,OPTIONS,yes,NIFTY,Index Options (OPTIDX),31-Oct-2024,PE,(blank),19-Sep-2024,31-Oct-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+75,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Nov-2024,CE,(blank),24-Oct-2024,28-Nov-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+76,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Nov-2024,PE,(blank),24-Oct-2024,28-Nov-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+77,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Dec-2024,CE,(blank),21-Nov-2024,26-Dec-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+78,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Dec-2024,PE,(blank),21-Nov-2024,26-Dec-2024,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+79,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Jan-2025,CE,(blank),19-Dec-2024,30-Jan-2025,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+80,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Jan-2025,PE,(blank),19-Dec-2024,30-Jan-2025,25,confirm in NSE dropdown (festival holidays before 2026 not checked)
+81,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Feb-2025,CE,(blank),23-Jan-2025,27-Feb-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+82,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Feb-2025,PE,(blank),23-Jan-2025,27-Feb-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+83,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Mar-2025,CE,(blank),20-Feb-2025,27-Mar-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+84,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Mar-2025,PE,(blank),20-Feb-2025,27-Mar-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+85,OPTIONS,yes,NIFTY,Index Options (OPTIDX),24-Apr-2025,CE,(blank),20-Mar-2025,24-Apr-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+86,OPTIONS,yes,NIFTY,Index Options (OPTIDX),24-Apr-2025,PE,(blank),20-Mar-2025,24-Apr-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+87,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-May-2025,CE,(blank),17-Apr-2025,29-May-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+88,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-May-2025,PE,(blank),17-Apr-2025,29-May-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+89,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Jun-2025,CE,(blank),22-May-2025,26-Jun-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+90,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-Jun-2025,PE,(blank),22-May-2025,26-Jun-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+91,OPTIONS,yes,NIFTY,Index Options (OPTIDX),31-Jul-2025,CE,(blank),19-Jun-2025,31-Jul-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+92,OPTIONS,yes,NIFTY,Index Options (OPTIDX),31-Jul-2025,PE,(blank),19-Jun-2025,31-Jul-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+93,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Aug-2025,CE,(blank),24-Jul-2025,28-Aug-2025,75,Thu->Tue expiry switch around here: confirm in NSE dropdown
+94,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Aug-2025,PE,(blank),24-Jul-2025,28-Aug-2025,75,Thu->Tue expiry switch around here: confirm in NSE dropdown
+95,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Sep-2025,CE,(blank),21-Aug-2025,30-Sep-2025,75,Thu->Tue expiry switch around here: confirm in NSE dropdown
+96,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Sep-2025,PE,(blank),21-Aug-2025,30-Sep-2025,75,Thu->Tue expiry switch around here: confirm in NSE dropdown
+97,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Oct-2025,CE,(blank),23-Sep-2025,28-Oct-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+98,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Oct-2025,PE,(blank),23-Sep-2025,28-Oct-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+99,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Nov-2025,CE,(blank),21-Oct-2025,25-Nov-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+100,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Nov-2025,PE,(blank),21-Oct-2025,25-Nov-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+101,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Dec-2025,CE,(blank),18-Nov-2025,30-Dec-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+102,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Dec-2025,PE,(blank),18-Nov-2025,30-Dec-2025,75,confirm in NSE dropdown (festival holidays before 2026 not checked)
+103,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Jan-2026,CE,(blank),23-Dec-2025,27-Jan-2026,65,
+104,OPTIONS,yes,NIFTY,Index Options (OPTIDX),27-Jan-2026,PE,(blank),23-Dec-2025,27-Jan-2026,65,
+105,OPTIONS,yes,NIFTY,Index Options (OPTIDX),24-Feb-2026,CE,(blank),20-Jan-2026,24-Feb-2026,65,
+106,OPTIONS,yes,NIFTY,Index Options (OPTIDX),24-Feb-2026,PE,(blank),20-Jan-2026,24-Feb-2026,65,
+107,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Mar-2026,CE,(blank),17-Feb-2026,30-Mar-2026,65,shifted for holiday
+108,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Mar-2026,PE,(blank),17-Feb-2026,30-Mar-2026,65,shifted for holiday
+109,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Apr-2026,CE,(blank),23-Mar-2026,28-Apr-2026,65,
+110,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Apr-2026,PE,(blank),23-Mar-2026,28-Apr-2026,65,
+111,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-May-2026,CE,(blank),21-Apr-2026,26-May-2026,65,
+112,OPTIONS,yes,NIFTY,Index Options (OPTIDX),26-May-2026,PE,(blank),21-Apr-2026,26-May-2026,65,
+113,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Jun-2026,CE,(blank),19-May-2026,30-Jun-2026,65,
+114,OPTIONS,yes,NIFTY,Index Options (OPTIDX),30-Jun-2026,PE,(blank),19-May-2026,30-Jun-2026,65,
+115,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Jul-2026,CE,(blank),23-Jun-2026,28-Jul-2026,65,
+116,OPTIONS,yes,NIFTY,Index Options (OPTIDX),28-Jul-2026,PE,(blank),23-Jun-2026,28-Jul-2026,65,
+117,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Aug-2026,CE,(blank),21-Jul-2026,25-Aug-2026,65,
+118,OPTIONS,yes,NIFTY,Index Options (OPTIDX),25-Aug-2026,PE,(blank),21-Jul-2026,25-Aug-2026,65,
+119,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-Sep-2026,CE,(blank),18-Aug-2026,29-Sep-2026,65,
+120,OPTIONS,yes,NIFTY,Index Options (OPTIDX),29-Sep-2026,PE,(blank),18-Aug-2026,29-Sep-2026,65,
+121,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Sep-2021,31-Oct-2021,,
+122,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Nov-2021,31-Dec-2021,,
+123,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Jan-2022,28-Feb-2022,,
+124,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Mar-2022,30-Apr-2022,,
+125,INDEX,no,NIFTY 50,Historical Index Data,,,,01-May-2022,30-Jun-2022,,
+126,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Jul-2022,31-Aug-2022,,
+127,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Sep-2022,31-Oct-2022,,
+128,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Nov-2022,31-Dec-2022,,
+129,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Jan-2023,28-Feb-2023,,
+130,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Mar-2023,30-Apr-2023,,
+131,INDEX,no,NIFTY 50,Historical Index Data,,,,01-May-2023,30-Jun-2023,,
+132,INDEX,no,NIFTY 50,Historical Index Data,,,,01-Jul-2023,31-Aug-2023,,
+133,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Sep-2023,31-Oct-2023,,
+134,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Nov-2023,31-Dec-2023,,
+135,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Jan-2024,29-Feb-2024,,
+136,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Mar-2024,30-Apr-2024,,
+137,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-May-2024,30-Jun-2024,,
+138,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Jul-2024,31-Aug-2024,,
+139,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Sep-2024,31-Oct-2024,,
+140,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Nov-2024,31-Dec-2024,,
+141,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Jan-2025,28-Feb-2025,,
+142,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Mar-2025,30-Apr-2025,,
+143,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-May-2025,30-Jun-2025,,
+144,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Jul-2025,31-Aug-2025,,
+145,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Sep-2025,31-Oct-2025,,
+146,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Nov-2025,31-Dec-2025,,
+147,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Jan-2026,28-Feb-2026,,
+148,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Mar-2026,30-Apr-2026,,
+149,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-May-2026,30-Jun-2026,,
+150,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Jul-2026,31-Aug-2026,,
+151,INDEX,yes,NIFTY 50,Historical Index Data,,,,01-Sep-2026,30-Sep-2026,,

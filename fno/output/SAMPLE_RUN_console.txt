@@ -1,0 +1,51 @@
+
+=== DATA REPORT (from file contents, not file names) ===
+Index rows 5: 2025-03-03 -> 2025-03-07
+Option rows 25: 2025-03-03 -> 2025-03-07
+    expiry option_type      first       last  days  strikes  liquid_rows
+2025-03-27          CE 2025-03-03 2025-03-07     5        3           15
+2025-03-27          PE 2025-03-03 2025-03-07     5        2           10
+Missing expiry-month x type: none
+Trading days with no usable expiry (>= 3 days left): 0
+
+=== ALL VARIATIONS (none tuned) ===
+data                           SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY  SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY       SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY      SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY
+variant                                 risk10_next_close (BASELINE)                       risk2_next_close  risk10_same_close (look-ahead, optimistic)  risk2_same_close (look-ahead, optimistic)
+start                                                     2025-03-03                             2025-03-03                                  2025-03-03                                 2025-03-03
+end                                                       2025-03-07                             2025-03-07                                  2025-03-07                                 2025-03-07
+years                                                           0.01                                   0.01                                        0.01                                       0.01
+starting_capital                                             25000.0                                25000.0                                     25000.0                                    25000.0
+ending_capital                                              26384.65                                25000.0                                    26763.57                                    25000.0
+total_return_pct                                                5.54                                    0.0                                        7.05                                        0.0
+cagr_pct                                                        None                                   None                                        None                                       None
+max_drawdown_pct                                                0.19                                    0.0                                        0.17                                        0.0
+trades                                                             1                                      0                                           1                                          0
+win_rate_pct                                                   100.0                                    NaN                                       100.0                                        NaN
+avg_win                                                      1384.65                                    NaN                                     1763.57                                        NaN
+avg_loss                                                        None                                   None                                        None                                       None
+total_charges                                                  55.35                                    0.0                                       55.18                                        0.0
+total_slippage                                                  60.0                                    0.0                                       56.25                                        0.0
+charges_pct_of_start                                            0.22                                    0.0                                        0.22                                        0.0
+unaffordable_skips                                                 1                                      2                                           1                                          2
+no_liquid_contract_skips                                           0                                      0                                           0                                          0
+busy_skips                                                         0                                      0                                           0                                          0
+busted                                                            no                                     no                                          no                                         no
+bust_date                                                       None                                   None                                        None                                       None
+avg_pct_otm_traded_neg_is_itm                                  -0.13                                    NaN                                       -0.09                                        NaN
+
+=== MONTE CARLO (projection, not forecast) ===
+                                 data                                    variant  horizon_months  trades_observed  months_observed  trades_per_month  bust_level                                               status
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY               risk10_next_close (BASELINE)              36                1              0.1              7.61     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY               risk10_next_close (BASELINE)              60                1              0.1              7.61     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY                           risk2_next_close              36                0              0.1              0.00     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY                           risk2_next_close              60                0              0.1              0.00     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY risk10_same_close (look-ahead, optimistic)              36                1              0.1              7.61     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY risk10_same_close (look-ahead, optimistic)              60                1              0.1              7.61     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY  risk2_same_close (look-ahead, optimistic)              36                0              0.1              0.00     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY  risk2_same_close (look-ahead, optimistic)              60                0              0.1              0.00     1539.28 INSUFFICIENT_TRADES (<30); projection not meaningful
+
+=== HAND CHECK, trade 1 ===
+entry fill 30.0 x 1.01 = 30.3; x qty 75 = 2272.5
+exit fill 50.0 -> 49.5; value 3712.5
+gross 3712.5 - 2272.5 = 1440.0
+charges 24.6236 + 30.7296 = 55.3532; net 1384.6468

@@ -1,0 +1,4 @@
+NIFTY50_15-Dec-2025_to_19-Oct-2026.csv: NIFTY 50 EOD closes (209 trading days) from the NSE API
+https://www.nseindia.com/api/historicalOR/indicesHistory (indexType=NIFTY 50), fetched 20-Oct-2026 via Firecrawl.
+Cross-check: 28-Sep-2026 close 22780.25 equals FH_UNDERLYING_VALUE in NSE foCPV option data for that day.
+Derived from the file (NSE close 19-Oct-2026): close 22888.95, 20-DMA 22818.01, 50-DMA 23514.27, 200-DMA 24168.40.

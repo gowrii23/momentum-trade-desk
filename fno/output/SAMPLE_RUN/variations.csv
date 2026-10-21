@@ -1,0 +1,5 @@
+data,variant,start,end,years,starting_capital,ending_capital,total_return_pct,cagr_pct,max_drawdown_pct,trades,win_rate_pct,avg_win,avg_loss,total_charges,total_slippage,charges_pct_of_start,unaffordable_skips,no_liquid_contract_skips,busy_skips,busted,bust_date,avg_pct_otm_traded_neg_is_itm
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,risk10_next_close (BASELINE),2025-03-03,2025-03-07,0.01,25000.0,26384.65,5.54,,0.19,1,100.0,1384.65,,55.35,60.0,0.22,1,0,0,no,,-0.13
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,risk2_next_close,2025-03-03,2025-03-07,0.01,25000.0,25000.0,0.0,,0.0,0,,,,0.0,0.0,0.0,2,0,0,no,,
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,"risk10_same_close (look-ahead, optimistic)",2025-03-03,2025-03-07,0.01,25000.0,26763.57,7.05,,0.17,1,100.0,1763.57,,55.18,56.25,0.22,1,0,0,no,,-0.09
+SAMPLE_DATA_FOR_ACCOUNTING_TESTS_ONLY,"risk2_same_close (look-ahead, optimistic)",2025-03-03,2025-03-07,0.01,25000.0,25000.0,0.0,,0.0,0,,,,0.0,0.0,0.0,2,0,0,no,,
