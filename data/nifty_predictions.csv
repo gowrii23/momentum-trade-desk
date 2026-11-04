@@ -29,3 +29,4 @@ prediction_id,signal_date,signal_time_ist,action,instrument,nifty_at_signal,prev
 2026-10-30_TRADE_CE,2026-10-30,10:59 IST,TRADE CE,NIFTY 23050 CE,23053.1,22961.95,22656.75,BEARISH,PE,closed,22936.75,-0.5,loser,2026-10-30,Nifty 23053 is above yesterday's high 22962 — breakout confirmed. CE setup is active.
 2026-11-02_TRADE_CE,2026-11-02,12:47 IST,TRADE CE,NIFTY 23450 CE,23440.8,23118.1,22905.1,BEARISH,PE,closed,23053.1,-1.65,loser,2026-11-02,Nifty 23441 is above yesterday's high 23118 — breakout confirmed. CE setup is active.
 2026-11-03_TRADE_CE,2026-11-03,12:14 IST,TRADE CE,NIFTY 23800 CE,23810.85,23440.8,23207.05,BEARISH,PE,closed,23440.8,-1.55,loser,2026-11-03,Nifty 23811 is above yesterday's high 23441 — breakout confirmed. CE setup is active.
+2026-11-04_TRADE_CE,2026-11-04,12:26 IST,TRADE CE,NIFTY 23950 CE,23960.6,23810.85,23482.8,BEARISH,PE,open,,,pending,,Nifty 23961 is above yesterday's high 23811 — breakout confirmed. CE setup is active.
