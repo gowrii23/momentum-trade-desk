@@ -2,19 +2,19 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 12:54 IST  
+**Checked at:** 12:04 IST  
 **Decision:** 🟢 **TRADE CE**  
-**Instrument:** NIFTY 25050 CE  
+**Instrument:** NIFTY 25250 CE  
 
-Nifty **25045** is above yesterday's high **25030** — breakout confirmed. CE setup is active.
+Nifty **25255** is above yesterday's high **25084** — breakout confirmed. CE setup is active.
 
 ### Live context
 
-- Nifty now: **25044.65**
-- Day open: 25073.65 (gap +0.17%)
-- Move from open: -0.12%
-- PE trigger (below): **24388.05**
-- CE trigger (above): **25030.35**
+- Nifty now: **25255.05**
+- Day open: 25337.8 (gap +1.17%)
+- Move from open: -0.33%
+- PE trigger (below): **24838.75**
+- CE trigger (above): **25084.05**
 - Regime: BULLISH | Bias: CE
 
 ### Exit reminder
@@ -25,7 +25,7 @@ Nifty **25045** is above yesterday's high **25030** — breakout confirmed. CE s
 
 **Last 30 days** — use this to review and tune the setup.
 
-- **Trade signals:** 17
+- **Trade signals:** 18
 - **Closed:** 15 | **Wins:** 1
 - **Win rate (direction correct by EOD):** 6.7%
 - **Avg Nifty move from signal:** -0.57%
@@ -34,6 +34,7 @@ Nifty **25045** is above yesterday's high **25030** — breakout confirmed. CE s
 
 | Date | Time | Action | Instrument | Nifty @ signal | EOD | Move % | Outcome |
 |------|------|--------|------------|---------------:|----:|-------:|---------|
+| 2026-11-11 | 12:04 IST | TRADE CE | NIFTY 25250 CE | 25255.05 | — | — | pending |
 | 2026-11-10 | 12:54 IST | TRADE CE | NIFTY 25050 CE | 25044.65 | — | — | pending |
 | 2026-11-09 | 13:15 IST | TRADE CE | NIFTY 25050 CE | 25044.65 | 25030.35 | -0.06 | flat |
 | 2026-11-06 | 12:23 IST | TRADE CE | NIFTY 25050 CE | 25030.35 | 24536.6 | -1.97 | loser |
@@ -51,10 +52,6 @@ Nifty **25045** is above yesterday's high **25030** — breakout confirmed. CE s
 | 2026-10-16 | 09:13 IST | TRADE CE | NIFTY 23100 CE | 23087.1 | 23146.15 | 0.26 | winner |
 | 2026-10-15 | 09:20 IST | TRADE CE | NIFTY 22950 CE | 22964.95 | 22997.35 | 0.14 | flat |
 | 2026-10-13 | 12:05 IST | TRADE CE | NIFTY 22700 CE | 22721.95 | 22363.35 | -1.58 | loser |
-
-**Scan date:** 2026-11-09  
-**Symbols scanned:** 2893  
-**Trading days in history:** 48
 
 ## Nifty daily plan (tomorrow)
 
