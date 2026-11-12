@@ -2,33 +2,30 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 12:04 IST  
-**Decision:** 🟢 **TRADE CE**  
-**Instrument:** NIFTY 25250 CE  
+**Checked at:** 13:08 IST  
+**Decision:** ⚪ **SKIP**  
 
-Nifty **25255** is above yesterday's high **25084** — breakout confirmed. CE setup is active.
+Nifty **25299** is between yesterday's low **25095** and high **25424** — no breakout yet. **Do not trade.** Wait or skip today.
 
 ### Live context
 
-- Nifty now: **25255.05**
-- Day open: 25337.8 (gap +1.17%)
-- Move from open: -0.33%
-- PE trigger (below): **24838.75**
-- CE trigger (above): **25084.05**
+- Nifty now: **25299.35**
+- Day open: 25213.5 (gap -0.16%)
+- Move from open: +0.34%
+- PE trigger (below): **25095.35**
+- CE trigger (above): **25424.35**
 - Regime: BULLISH | Bias: CE
 
-### Exit reminder
-
-- Book half at +50% premium, rest at +80–100%. Cut at -40%. Week-1 options: exit today or tomorrow.
+_No trade today unless levels break later — but prefer to skip choppy days._
 
 ## Nifty trade tracker (review)
 
 **Last 30 days** — use this to review and tune the setup.
 
-- **Trade signals:** 18
-- **Closed:** 15 | **Wins:** 1
-- **Win rate (direction correct by EOD):** 6.7%
-- **Avg Nifty move from signal:** -0.57%
+- **Trade signals:** 17
+- **Closed:** 14 | **Wins:** 1
+- **Win rate (direction correct by EOD):** 7.1%
+- **Avg Nifty move from signal:** -0.50%
 
 ### Recent Nifty signals
 
@@ -51,7 +48,6 @@ Nifty **25255** is above yesterday's high **25084** — breakout confirmed. CE s
 | 2026-10-19 | 10:11 IST | TRADE PE | NIFTY 22900 PE | 22888.95 | 23146.15 | 1.12 | loser |
 | 2026-10-16 | 09:13 IST | TRADE CE | NIFTY 23100 CE | 23087.1 | 23146.15 | 0.26 | winner |
 | 2026-10-15 | 09:20 IST | TRADE CE | NIFTY 22950 CE | 22964.95 | 22997.35 | 0.14 | flat |
-| 2026-10-13 | 12:05 IST | TRADE CE | NIFTY 22700 CE | 22721.95 | 22363.35 | -1.58 | loser |
 
 ## Nifty daily plan (tomorrow)
 
