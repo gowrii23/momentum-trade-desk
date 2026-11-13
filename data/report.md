@@ -1,22 +1,45 @@
 # EOD Momentum Scan Report
 
-## Morning trade confirmation (today)
+**Scan date:** 2026-11-13  
+**Symbols scanned:** 2896  
+**Trading days in history:** 50  
 
-**Checked at:** 12:32 IST  
-**Decision:** ⚪ **SKIP**  
+## Nifty daily plan (tomorrow)
 
-Nifty **25144** is between yesterday's low **25143** and high **25385** — no breakout yet. **Do not trade.** Wait or skip today.
+**Spot:** 25299.35 (+0.18% today)  
+**Regime:** BULLISH  
+**Bias:** CE — Nifty above 200-day average — favour calls on strength.  
+**Today's signal:** CE WATCH  
 
-### Live context
+_Up day with bullish bias — wait for a clean break above yesterday's high tomorrow._
 
-- Nifty now: **25144.3**
-- Day open: 25201.9 (gap -0.39%)
-- Move from open: -0.23%
-- PE trigger (below): **25142.95**
-- CE trigger (above): **25384.8**
-- Regime: BULLISH | Bias: CE
+### Key levels
 
-_No trade today unless levels break later — but prefer to skip choppy days._
+- Yesterday's high: **25424.35** (CE trigger above this)
+- Yesterday's low: **25095.35** (PE trigger below this)
+- 50-day average: 23310.51
+- 200-day average: 23992.2
+
+### Tomorrow's plan
+
+**Bias: CE** — Nifty breaks above **25424** (yesterday's high) in the first 30–60 min. Strike: **NIFTY 25300 CE** (ATM) or **25350 CE** (slightly OTM). Book half at +50% premium, rest at +80–100%. Cut at -40%.
+
+### Exit rules (weeklies)
+
+- Book **half** at **+50%** on premium
+- Book **rest** at **+80–100%** or trail
+- **Exit** if premium is down **40%**
+- Week-1 options: treat as **today/tomorrow** trade, not hold till expiry
+
+⚠️ Do **not** chase options already up 80–100%. Enter only on tomorrow's trigger, or book profits if you are already in.
+
+## Stock momentum candidates
+
+_No names passed Trend Template + Volume Confirmation today._
+
+## Track record
+
+_Track record builds as predictions close. Check back after a few weeks._
 
 ## Nifty trade tracker (review)
 
@@ -49,43 +72,6 @@ _No trade today unless levels break later — but prefer to skip choppy days._
 | 2026-10-16 | 09:13 IST | TRADE CE | NIFTY 23100 CE | 23087.1 | 23146.15 | 0.26 | winner |
 | 2026-10-15 | 09:20 IST | TRADE CE | NIFTY 22950 CE | 22964.95 | 22997.35 | 0.14 | flat |
 
-**Scan date:** 2026-11-12  
-**Symbols scanned:** 2895  
-**Trading days in history:** 49  
 
-## Nifty daily plan (tomorrow)
-
-**Spot:** 25255.05 (+0.84% today)  
-**Regime:** BULLISH  
-**Bias:** CE — Nifty above 200-day average — favour calls on strength.  
-**Today's signal:** CE CONFIRMED  
-
-_Up day and closed above yesterday's high — CE buyers had the edge today._
-
-### Key levels
-
-- Yesterday's high: **25084.05** (CE trigger above this)
-- Yesterday's low: **24838.75** (PE trigger below this)
-- 50-day average: 23288.04
-- 200-day average: 23993.63
-
-### Tomorrow's plan
-
-**Bias: CE** — Nifty breaks above **25084** (yesterday's high) in the first 30–60 min. Strike: **NIFTY 25250 CE** (ATM) or **25300 CE** (slightly OTM). Book half at +50% premium, rest at +80–100%. Cut at -40%.
-
-### Exit rules (weeklies)
-
-- Book **half** at **+50%** on premium
-- Book **rest** at **+80–100%** or trail
-- **Exit** if premium is down **40%**
-- Week-1 options: treat as **today/tomorrow** trade, not hold till expiry
-
-⚠️ Do **not** chase options already up 80–100%. Enter only on tomorrow's trigger, or book profits if you are already in.
-
-## Stock momentum candidates
-
-_No names passed Trend Template + Volume Confirmation today._
-
-## Track record
-
-_Track record builds as predictions close. Check back after a few weeks._
+---
+_Technical rules only. Verify fundamentals and news catalysts by hand before trading._
