@@ -2,7 +2,7 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 15:12 IST  
+**Checked at:** 15:10 IST  
 **Decision:** ⚪ **SKIP**  
 
 Nifty **25366** is between yesterday's low **25345** and high **25809** — no breakout yet. **Do not trade.** Wait or skip today.
@@ -46,10 +46,6 @@ _No trade today unless levels break later — but prefer to skip choppy days._
 | 2026-11-02 | 12:47 IST | TRADE CE | NIFTY 23450 CE | 23440.8 | 23053.1 | -1.65 | loser |
 | 2026-10-30 | 10:59 IST | TRADE CE | NIFTY 23050 CE | 23053.1 | 22936.75 | -0.5 | loser |
 | 2026-10-29 | 11:02 IST | TRADE CE | NIFTY 22950 CE | 22936.75 | 22698.85 | -1.04 | loser |
-
-**Scan date:** 2026-11-20  
-**Symbols scanned:** 2912  
-**Trading days in history:** 55
 
 ## Nifty daily plan (tomorrow)
 
