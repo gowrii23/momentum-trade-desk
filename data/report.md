@@ -2,18 +2,18 @@
 
 ## Morning trade confirmation (today)
 
-**Checked at:** 15:10 IST  
+**Checked at:** 14:51 IST  
 **Decision:** ⚪ **SKIP**  
 
-Nifty **25366** is between yesterday's low **25345** and high **25809** — no breakout yet. **Do not trade.** Wait or skip today.
+Nifty **25819** is between yesterday's low **25344** and high **25993** — no breakout yet. **Do not trade.** Wait or skip today.
 
 ### Live context
 
-- Nifty now: **25366.4**
-- Day open: 25929.15 (gap +0.50%)
-- Move from open: -2.17%
-- PE trigger (below): **25345.2**
-- CE trigger (above): **25808.8**
+- Nifty now: **25819.25**
+- Day open: 25658.35 (gap +1.22%)
+- Move from open: +0.63%
+- PE trigger (below): **25343.85**
+- CE trigger (above): **25992.6**
 - Regime: BULLISH | Bias: CE
 
 _No trade today unless levels break later — but prefer to skip choppy days._
